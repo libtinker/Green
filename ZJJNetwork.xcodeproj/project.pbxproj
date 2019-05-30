@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5616F70D229FB1A600F51217 /* ZJJNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 5616F70C229FB1A600F51217 /* ZJJNetwork.m */; };
-		5616F713229FB9EE00F51217 /* ZJJApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5616F712229FB9EE00F51217 /* ZJJApiManager.m */; };
+		5616F719229FCE2B00F51217 /* ZJJNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 5616F715229FCE2B00F51217 /* ZJJNetwork.m */; };
+		5616F71A229FCE2B00F51217 /* ZJJApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5616F718229FCE2B00F51217 /* ZJJApiManager.m */; };
+		5616F71C229FCE5700F51217 /* ZJJNetwork.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 5616F71B229FCE5700F51217 /* ZJJNetwork.podspec */; };
 		68759D8B1FE4B69500B4FEAD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 68759D8A1FE4B69500B4FEAD /* AppDelegate.m */; };
 		68759D8E1FE4B69500B4FEAD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 68759D8D1FE4B69500B4FEAD /* ViewController.m */; };
 		68759D911FE4B69500B4FEAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68759D8F1FE4B69500B4FEAD /* Main.storyboard */; };
@@ -20,10 +21,11 @@
 
 /* Begin PBXFileReference section */
 		32B8028BB61F4475D618F672 /* Pods-ZJJNetwork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZJJNetwork.release.xcconfig"; path = "Target Support Files/Pods-ZJJNetwork/Pods-ZJJNetwork.release.xcconfig"; sourceTree = "<group>"; };
-		5616F70B229FB1A600F51217 /* ZJJNetwork.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJJNetwork.h; sourceTree = "<group>"; };
-		5616F70C229FB1A600F51217 /* ZJJNetwork.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJJNetwork.m; sourceTree = "<group>"; };
-		5616F711229FB9EE00F51217 /* ZJJApiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZJJApiManager.h; sourceTree = "<group>"; };
-		5616F712229FB9EE00F51217 /* ZJJApiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZJJApiManager.m; sourceTree = "<group>"; };
+		5616F715229FCE2B00F51217 /* ZJJNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJJNetwork.m; sourceTree = "<group>"; };
+		5616F716229FCE2B00F51217 /* ZJJApiManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJJApiManager.h; sourceTree = "<group>"; };
+		5616F717229FCE2B00F51217 /* ZJJNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZJJNetwork.h; sourceTree = "<group>"; };
+		5616F718229FCE2B00F51217 /* ZJJApiManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZJJApiManager.m; sourceTree = "<group>"; };
+		5616F71B229FCE5700F51217 /* ZJJNetwork.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ZJJNetwork.podspec; sourceTree = "<group>"; };
 		68759D861FE4B69500B4FEAD /* ZJJNetwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZJJNetwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		68759D891FE4B69500B4FEAD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		68759D8A1FE4B69500B4FEAD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -53,12 +55,21 @@
 		5616F70A229FB17900F51217 /* ZJJNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				5616F70B229FB1A600F51217 /* ZJJNetwork.h */,
-				5616F70C229FB1A600F51217 /* ZJJNetwork.m */,
-				5616F711229FB9EE00F51217 /* ZJJApiManager.h */,
-				5616F712229FB9EE00F51217 /* ZJJApiManager.m */,
+				5616F71B229FCE5700F51217 /* ZJJNetwork.podspec */,
+				5616F714229FCE2B00F51217 /* Core */,
 			);
 			path = ZJJNetwork;
+			sourceTree = "<group>";
+		};
+		5616F714229FCE2B00F51217 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5616F715229FCE2B00F51217 /* ZJJNetwork.m */,
+				5616F716229FCE2B00F51217 /* ZJJApiManager.h */,
+				5616F717229FCE2B00F51217 /* ZJJNetwork.h */,
+				5616F718229FCE2B00F51217 /* ZJJApiManager.m */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		68759D7D1FE4B69500B4FEAD = {
@@ -174,6 +185,7 @@
 			files = (
 				68759D961FE4B69500B4FEAD /* LaunchScreen.storyboard in Resources */,
 				68759D931FE4B69500B4FEAD /* Assets.xcassets in Resources */,
+				5616F71C229FCE5700F51217 /* ZJJNetwork.podspec in Resources */,
 				68759D911FE4B69500B4FEAD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -212,9 +224,9 @@
 			files = (
 				68759D8E1FE4B69500B4FEAD /* ViewController.m in Sources */,
 				68759D991FE4B69500B4FEAD /* main.m in Sources */,
-				5616F713229FB9EE00F51217 /* ZJJApiManager.m in Sources */,
 				68759D8B1FE4B69500B4FEAD /* AppDelegate.m in Sources */,
-				5616F70D229FB1A600F51217 /* ZJJNetwork.m in Sources */,
+				5616F71A229FCE2B00F51217 /* ZJJApiManager.m in Sources */,
+				5616F719229FCE2B00F51217 /* ZJJNetwork.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,22 +22,24 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        self.type = EnvironmentTypeTest;
+        _type = EnvironmentTypeTest;
     }
     return self;
 }
 
 - (NSString *)baseUrl {
-    switch (self.type) {
-        case EnvironmentTypeOnline:
-            _baseUrl = @"http://127.0.0.1:6060";
-            break;
-        case EnvironmentTypeTest:
-            _baseUrl = @"http://127.0.0.1:6061";
-            break;
-        case EnvironmentTypePrepare:
-            _baseUrl = @"http://127.0.0.1:6060";
-            break;
+    if (!_baseUrl) {
+        switch (_type) {
+            case EnvironmentTypeOnline:
+                _baseUrl = @"http://127.0.0.1:6060";
+                break;
+            case EnvironmentTypeTest:
+                _baseUrl = @"http://127.0.0.1:6061";
+                break;
+            case EnvironmentTypePrepare:
+                _baseUrl = @"http://127.0.0.1:6060";
+                break;
+        }
     }
     return _baseUrl;
 }
