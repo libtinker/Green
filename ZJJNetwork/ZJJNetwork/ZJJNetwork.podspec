@@ -15,8 +15,6 @@ s.author             = { "天空吸引我" => "2028002516@qq.com" }
 s.dependency 'AFNetworking'
 s.ios.deployment_target = '8.0'
 
-#文件夹
-s.subspec 'Core' do |ss|
-ss.source_files  = 'ZJJNetwork/Core/*.{h,m}'
-end
+s.source_files  = 'Core/*.{h,m,mm,cpp,c}', 'Core/*/*.{h,m,mm,cpp,c}', 'Core/*/*/*.{h,m,mm,cpp,c}'
+s.public_header_files = 'Core/*.h', 'Core/*/*.h', 'Core/*/*/*.h'
 end
