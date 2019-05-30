@@ -14,17 +14,24 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - ZJJNetwork (0.0.1):
+    - AFNetworking
 
 DEPENDENCIES:
-  - AFNetworking
+  - ZJJNetwork (from `locallib/ZJJNetwork`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
 
+EXTERNAL SOURCES:
+  ZJJNetwork:
+    :path: locallib/ZJJNetwork
+
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  ZJJNetwork: 9f948313e997ee0a6c016ec58317ab9c86fffecd
 
-PODFILE CHECKSUM: 4992b3aa866a69bc89a1cc8c7e524d429651dd49
+PODFILE CHECKSUM: 32b2ef4373f31dab9f0656fa7f549c4f4ea769cd
 
 COCOAPODS: 1.7.0
