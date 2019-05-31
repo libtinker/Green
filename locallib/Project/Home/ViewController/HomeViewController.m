@@ -11,18 +11,42 @@
 #import "ZJJCarouselView.h"
 
 @interface HomeViewController ()
+{
+    NSMutableArray *_dataArray;
+}
+@property (nonatomic,strong) UILabel *leftLabel;
+@property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) ZJJCarouselView *carouselView;
 
 @end
 
 @implementation HomeViewController
 
 #pragma mark - LifeCycle
+
+- (instancetype)init {
+    if (self = [super init]) {
+        _dataArray = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"绿色";
+
     // Do any additional setup after loading the view.
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:self.leftLabel];
+    self.navigationItem.leftBarButtonItem = item ;
+
+    [_dataArray addObject:@"1"];
+    [_dataArray addObject:@"1"];
+    [_dataArray addObject:@"1"];
+    [_dataArray addObject:@"1"];
+
+    [self.view addSubview:self.tableView];
     [self testZJJCarouselView];
 }
+
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     NSDictionary *pram = @{
@@ -45,16 +69,30 @@
                            @"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525355773453&di=c4d3bf6254515b07d6cf0669993a645f&imgtype=0&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201508%2F22%2F20150822120345_r3vBk.jpeg"
                            ];
 
-    ZJJCarouselView *view = [[ZJJCarouselView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 300) imageUrls:imageUrls didSelectBlock:^(NSInteger index) {
-        NSLog(@"%d",index);
-    }];
-    [self.view addSubview:view];
+    _carouselView.imageUrls = imageUrls;
 }
 
 #pragma mark - HTTP
 
 #pragma mark - Delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _dataArray.count;
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(UITableViewCell.class) forIndexPath:indexPath];
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIEdgeInsets UIEgde = UIEdgeInsetsMake(0, 16, 0, 16);
+    [cell setSeparatorInset:UIEgde];
+}
 #pragma mark - Public
 
 #pragma mark - Private
@@ -63,4 +101,34 @@
 
 #pragma mark - Getter
 
+- (UILabel *)leftLabel {
+    if (!_leftLabel) {
+        _leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 88, 44)];
+        _leftLabel.text = @"绿色";
+        _leftLabel.textColor = [UIColor whiteColor];
+        _leftLabel.font = [UIFont boldSystemFontOfSize:24];
+        _leftLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _leftLabel;
+}
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.tableHeaderView = self.carouselView;
+        [_tableView registerClass:UITableViewCell.class forCellReuseIdentifier:NSStringFromClass(UITableViewCell.class)];
+    }
+    return _tableView;
+}
+
+- (ZJJCarouselView *)carouselView {
+    if (!_carouselView) {
+        _carouselView = [[ZJJCarouselView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 250) imageUrls:@[] didSelectBlock:^(NSInteger index) {
+
+        }];
+    }
+    return _carouselView;
+}
 @end

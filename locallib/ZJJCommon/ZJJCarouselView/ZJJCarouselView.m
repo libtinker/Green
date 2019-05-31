@@ -98,7 +98,7 @@ static const int imageBtnCount = 3;
     self.pageControl.frame = CGRectMake(pageX, pageY, pageW, pageH);
 }
 
--(void)setImageUrls:(NSArray *)imageUrls {
+- (void)setImageUrls:(NSArray *)imageUrls {
     _imageUrls = imageUrls;
     self.pageControl.numberOfPages = _imageUrls.count;
     self.pageControl.currentPage = 0;
@@ -106,18 +106,18 @@ static const int imageBtnCount = 3;
     [self startTimer];
 }
 
--(void)setPageColor:(UIColor *)pageColor {
+- (void)setPageColor:(UIColor *)pageColor {
     _pageColor = pageColor;
     self.pageControl.pageIndicatorTintColor = pageColor;
 }
 
--(void)setCurrentPageColor:(UIColor *)currentPageColor {
+- (void)setCurrentPageColor:(UIColor *)currentPageColor {
     _currentPageColor = currentPageColor;
     self.pageControl.currentPageIndicatorTintColor = currentPageColor;
 }
 
 //设置显示内容
--(void)setContent {
+- (void)setContent {
     for (int i=0; i<self.scrollView.subviews.count; i++) {
         NSInteger index = self.pageControl.currentPage;
         UIButton *imgBtn = self.scrollView.subviews[i];
@@ -133,11 +133,14 @@ static const int imageBtnCount = 3;
         }else if (index == self.pageControl.numberOfPages){
             index = 0;
         }
-        
+
+        if (_imageUrls.count == 0) {
+            index = 0;
+        }
         imgBtn.tag = index;
         
         //只是图片的加载方式
-        NSURL *imageUrl = [NSURL URLWithString:_imageUrls[index]];
+        NSURL *imageUrl = index == 0 ? nil :[NSURL URLWithString:_imageUrls[index]];
         [imgBtn sd_setImageWithURL:imageUrl forState:UIControlStateNormal placeholderImage:_placeholderImage completed:nil];
         [imgBtn sd_setImageWithURL:imageUrl forState:UIControlStateHighlighted placeholderImage:_placeholderImage completed:nil];
     }

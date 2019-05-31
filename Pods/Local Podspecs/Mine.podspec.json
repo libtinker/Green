@@ -1,0 +1,24 @@
+{
+  "name": "Mine",
+  "version": "0.0.2",
+  "summary": "项目",
+  "authors": {
+    "天空吸引我": "2028002516@qq.com"
+  },
+  "requires_arc": true,
+  "description": "Mine for Green",
+  "source": {
+    "local": "./",
+    "tag": "0.0.2"
+  },
+  "homepage": "https://github.com/zhengjunjie11/ZJJNetWork",
+  "platforms": {
+    "ios": "9.0"
+  },
+  "subspecs": [
+    {
+      "name": "ViewController",
+      "source_files": "ViewController/*.{h,m}"
+    }
+  ]
+}

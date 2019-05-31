@@ -18,11 +18,21 @@
   "subspecs": [
     {
       "name": "Home",
-      "source_files": "Home/ViewController/*.{h,m}"
+      "subspecs": [
+        {
+          "name": "ViewController",
+          "source_files": "Home/ViewController/*.{h,m}"
+        }
+      ]
     },
     {
       "name": "Mine",
-      "source_files": "Mine/ViewController/*.{h,m}"
+      "subspecs": [
+        {
+          "name": "ViewController",
+          "source_files": "Mine/ViewController/*.{h,m}"
+        }
+      ]
     },
     {
       "name": "Base",

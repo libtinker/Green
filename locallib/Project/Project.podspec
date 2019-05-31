@@ -21,15 +21,19 @@ s.author             = { "天空吸引我" => "2028002516@qq.com" }
 s.ios.deployment_target = '9.0'
 
 s.subspec 'Home' do |ss|
-ss.source_files = 'Home/ViewController/*.{h,m}'
+  ss.subspec 'ViewController' do |sss|
+    sss.source_files = 'Home/ViewController/*.{h,m}'
+  end
 end
 
 s.subspec 'Mine' do |ss|
-ss.source_files = 'Mine/ViewController/*.{h,m}'
+  ss.subspec 'ViewController' do |sss|
+    sss.source_files = 'Mine/ViewController/*.{h,m}'
+  end
 end
 
 s.subspec 'Base' do |ss|
-ss.source_files = 'Base/*.{h,m}'
+  ss.source_files = 'Base/*.{h,m}'
 end
 
 end

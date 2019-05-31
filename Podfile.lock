@@ -19,8 +19,12 @@ PODS:
     - Project/Home (= 0.0.2)
     - Project/Mine (= 0.0.2)
   - Project/Base (0.0.2)
-  - Project/Home (0.0.2)
-  - Project/Mine (0.0.2)
+  - Project/Home (0.0.2):
+    - Project/Home/ViewController (= 0.0.2)
+  - Project/Home/ViewController (0.0.2)
+  - Project/Mine (0.0.2):
+    - Project/Mine/ViewController (= 0.0.2)
+  - Project/Mine/ViewController (0.0.2)
   - SDWebImage (5.0.2):
     - SDWebImage/Core (= 5.0.2)
   - SDWebImage/Core (5.0.2)
@@ -52,11 +56,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  Project: ac868a4ca930b9c77d6dd0cf45adbe8242a1ff11
+  Project: 19527351c8e604f3a911d8d6ad460ac1e8976717
   SDWebImage: 6764b5fa0f73c203728052955dbefa2bf1f33282
   ZJJCommon: 02553fe5049dc54e6e43e53a712d9831ec8e4a2c
   ZJJNetwork: 7e9d21398b24dae2aab4a3fd85414fe0994b3af3
 
-PODFILE CHECKSUM: 25a944e4bb56dac87d9f7d15e8389f008911c136
+PODFILE CHECKSUM: 61a7874c8540126458f16ef645685368abb97e28
 
 COCOAPODS: 1.7.0
