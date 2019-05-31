@@ -13,8 +13,6 @@
 		5616F733229FD07400F51217 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5616F732229FD07400F51217 /* Assets.xcassets */; };
 		5616F736229FD07400F51217 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5616F734229FD07400F51217 /* LaunchScreen.storyboard */; };
 		5616F739229FD07400F51217 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5616F738229FD07400F51217 /* main.m */; };
-		5616F743229FD07400F51217 /* LiveTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5616F742229FD07400F51217 /* LiveTests.m */; };
-		5616F74E229FD07400F51217 /* LiveUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5616F74D229FD07400F51217 /* LiveUITests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,11 +44,7 @@
 		5616F737229FD07400F51217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5616F738229FD07400F51217 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5616F73E229FD07400F51217 /* GreenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GreenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5616F742229FD07400F51217 /* LiveTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveTests.m; sourceTree = "<group>"; };
-		5616F744229FD07400F51217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5616F749229FD07400F51217 /* GreenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GreenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5616F74D229FD07400F51217 /* LiveUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LiveUITests.m; sourceTree = "<group>"; };
-		5616F74F229FD07400F51217 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62810F686CB5E938C29BFA56 /* Pods-Green.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Green.release.xcconfig"; path = "Target Support Files/Pods-Green/Pods-Green.release.xcconfig"; sourceTree = "<group>"; };
 		7B97352EA660CF65F698183A /* Pods-Live.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live.debug.xcconfig"; path = "Target Support Files/Pods-Live/Pods-Live.debug.xcconfig"; sourceTree = "<group>"; };
 		F01AAA413EDC45D25C448162 /* Pods-Live.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Live.release.xcconfig"; path = "Target Support Files/Pods-Live/Pods-Live.release.xcconfig"; sourceTree = "<group>"; };
@@ -86,8 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				5616F728229FD07100F51217 /* Green */,
-				5616F741229FD07400F51217 /* GreenTests */,
-				5616F74C229FD07400F51217 /* GreenUITests */,
 				5616F727229FD07100F51217 /* Products */,
 				999170744741811C17298BB5 /* Pods */,
 				B1300FFD953A1F2F64D361BC /* Frameworks */,
@@ -116,24 +108,6 @@
 				5616F738229FD07400F51217 /* main.m */,
 			);
 			path = Green;
-			sourceTree = "<group>";
-		};
-		5616F741229FD07400F51217 /* GreenTests */ = {
-			isa = PBXGroup;
-			children = (
-				5616F742229FD07400F51217 /* LiveTests.m */,
-				5616F744229FD07400F51217 /* Info.plist */,
-			);
-			path = GreenTests;
-			sourceTree = "<group>";
-		};
-		5616F74C229FD07400F51217 /* GreenUITests */ = {
-			isa = PBXGroup;
-			children = (
-				5616F74D229FD07400F51217 /* LiveUITests.m */,
-				5616F74F229FD07400F51217 /* Info.plist */,
-			);
-			path = GreenUITests;
 			sourceTree = "<group>";
 		};
 		999170744741811C17298BB5 /* Pods */ = {
@@ -320,7 +294,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5616F743229FD07400F51217 /* LiveTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +301,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5616F74E229FD07400F51217 /* LiveUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

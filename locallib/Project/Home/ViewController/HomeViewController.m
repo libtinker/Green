@@ -19,7 +19,7 @@
 #pragma mark - LifeCycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"首页";
+    self.title = @"绿色";
     // Do any additional setup after loading the view.
     [self testZJJCarouselView];
 }
