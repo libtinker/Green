@@ -16,7 +16,7 @@ typedef void (^Failure)(NSError * _Nullable error,id _Nullable responseObject);
 
 @interface ZJJNetwork : NSObject
 
-- (void)POST:(NSString *)URLString
++ (void)POST:(NSString *)URLString
   parameters:(id)parameters
      success:(Success)success
      failure:(Failure)failure;

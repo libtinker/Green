@@ -14,24 +14,38 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - SDWebImage (5.0.2):
+    - SDWebImage/Core (= 5.0.2)
+  - SDWebImage/Core (5.0.2)
+  - ZJJCommon (0.0.1):
+    - SDWebImage
+    - ZJJCommon/ZJJCarouselView (= 0.0.1)
+  - ZJJCommon/ZJJCarouselView (0.0.1):
+    - SDWebImage
   - ZJJNetwork (0.0.1):
     - AFNetworking
 
 DEPENDENCIES:
+  - ZJJCommon (from `locallib/ZJJCommon`)
   - ZJJNetwork (from `locallib/ZJJNetwork`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - SDWebImage
 
 EXTERNAL SOURCES:
+  ZJJCommon:
+    :path: locallib/ZJJCommon
   ZJJNetwork:
     :path: locallib/ZJJNetwork
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  SDWebImage: 6764b5fa0f73c203728052955dbefa2bf1f33282
+  ZJJCommon: 41758a8a2f5e5d1401085dc56910bae236d1954e
   ZJJNetwork: 9f948313e997ee0a6c016ec58317ab9c86fffecd
 
-PODFILE CHECKSUM: 32b2ef4373f31dab9f0656fa7f549c4f4ea769cd
+PODFILE CHECKSUM: fbaec4948d8b123eb9dfb594375229436423c594
 
 COCOAPODS: 1.7.0

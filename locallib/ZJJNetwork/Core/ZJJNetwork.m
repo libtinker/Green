@@ -29,7 +29,7 @@ static AFHTTPSessionManager *shareManager = nil;
 }
 
 //设置Header
-- (void)setHeader:(AFHTTPSessionManager *)manager {
++ (void)setHeader:(AFHTTPSessionManager *)manager {
     [manager.requestSerializer setValue:@"ios"forHTTPHeaderField:@"device"];
     [manager.requestSerializer setValue:@"" forHTTPHeaderField:@"token"];
     [manager.requestSerializer setValue:@"appName" forHTTPHeaderField:@"appName"];
@@ -38,31 +38,30 @@ static AFHTTPSessionManager *shareManager = nil;
     [manager.requestSerializer setValue:@"text/plain" forHTTPHeaderField:@"Content-Type"];
 }
 
-- (void)POST:(NSString *)URLString
++ (void)POST:(NSString *)URLString
                     parameters:(id)parameters
                        success:(Success)success
      failure:(Failure)failure {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 
     AFHTTPSessionManager *manager = [ZJJNetwork shareManager];
-    [self setHeader:manager];
+    [ZJJNetwork setHeader:manager];
 
     NSString *baseUrl = [ZJJApiManager shareManager].baseUrl;
 
     NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithDictionary:parameters];
     [param addEntriesFromDictionary:@{@"apiName":URLString}];
 
-    __weak ZJJNetwork *weakSelf = self;
     [manager POST:baseUrl parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-        [weakSelf handleData:responseObject success:success failure:failure];
+        [ZJJNetwork handleData:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
         failure(error,nil);
     }];
 }
 
-- (void)handleData:(id  _Nullable)responseObject success:(Success)success failure:(Failure)failure{
++ (void)handleData:(id  _Nullable)responseObject success:(Success)success failure:(Failure)failure{
     NSError *error = nil;
     NSDictionary *result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
     NSString *code = result[@"code"];

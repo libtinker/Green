@@ -1,8 +1,9 @@
 platform :ios, ‘9.0’
 inhibit_all_warnings!
 
-project 'Live.xcworkspace'
+project 'Green.xcworkspace'
 
-target 'Live' do
+target 'Green' do
      pod 'ZJJNetwork', :path => "locallib/ZJJNetwork"
+     pod 'ZJJCommon', :path => "locallib/ZJJCommon"
 end
