@@ -15,7 +15,7 @@ ZJJCommon for Green
 DESC
 
 s.source       = { :local => './', :tag => '0.0.1' }
-s.homepage     = "https://github.com/zhengjunjie11/ZJJNetWork"
+s.homepage     = "https://github.com/zhengjunjie11/Green/tree/master/locallib/ZJJCommon"
 s.author             = { "天空吸引我" => "2028002516@qq.com" }
 
 s.dependency 'SDWebImage'

@@ -45,10 +45,11 @@
 
     [self.view addSubview:self.tableView];
     [self testZJJCarouselView];
+    [self request];
 }
 
 
-- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+- (void)request {
     NSDictionary *pram = @{
                            @"username":@"110122222",
                            @"passwold":@"q111111"

@@ -15,7 +15,7 @@ Project for Green
 DESC
 
 s.source       = { :local => './', :tag => '0.0.2' }
-s.homepage     = "https://github.com/zhengjunjie11/ZJJNetWork"
+s.homepage     = "https://github.com/zhengjunjie11/Green/tree/master/locallib/Project"
 s.author             = { "天空吸引我" => "2028002516@qq.com" }
 
 s.ios.deployment_target = '9.0'
