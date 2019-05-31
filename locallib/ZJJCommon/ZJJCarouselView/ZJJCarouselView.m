@@ -134,13 +134,10 @@ static const int imageBtnCount = 3;
             index = 0;
         }
 
-        if (_imageUrls.count == 0) {
-            index = 0;
-        }
         imgBtn.tag = index;
         
         //只是图片的加载方式
-        NSURL *imageUrl = index == 0 ? nil :[NSURL URLWithString:_imageUrls[index]];
+        NSURL *imageUrl = _imageUrls.count == 0 ? nil :[NSURL URLWithString:_imageUrls[index]];
         [imgBtn sd_setImageWithURL:imageUrl forState:UIControlStateNormal placeholderImage:_placeholderImage completed:nil];
         [imgBtn sd_setImageWithURL:imageUrl forState:UIControlStateHighlighted placeholderImage:_placeholderImage completed:nil];
     }
@@ -192,6 +189,7 @@ static const int imageBtnCount = 3;
 #pragma mark - 定时器
 //开始计时器
 - (void)startTimer {
+    [self stopTimer];
     if (_isAutomaticTransmission) {
         NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:_intervalTime target:self selector:@selector(nextImage) userInfo:nil repeats:YES];
         [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
