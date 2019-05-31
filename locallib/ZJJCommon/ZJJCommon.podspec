@@ -11,7 +11,7 @@ s.author             = { "zhengjunjie" => "2028002516@qq.com" }  #作者
 s.requires_arc = true #是否支持ARC
 
 s.description  = <<-DESC
-ZJJCommon for Live
+ZJJCommon for Green
 DESC
 
 s.source       = { :local => './', :tag => '0.0.1' }

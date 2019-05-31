@@ -1,23 +1,25 @@
 //
-//  ViewController.m
-//  Live
+//  HomeViewController.m
+//  Green
 //
-//  Created by 天空吸引我 on 2019/5/30.
+//  Created by 天空吸引我 on 2019/5/31.
 //  Copyright © 2019 天空吸引我. All rights reserved.
 //
 
-#import "ViewController.h"
-#import <ZJJNetwork.h>
-#import <ZJJCarouselView.h>
+#import "HomeViewController.h"
+#import "ZJJNetwork.h"
+#import "ZJJCarouselView.h"
 
-@interface ViewController ()
+@interface HomeViewController ()
 
 @end
 
-@implementation ViewController
+@implementation HomeViewController
 
+#pragma mark - LifeCycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"首页";
     // Do any additional setup after loading the view.
     [self testZJJCarouselView];
 }
@@ -48,5 +50,17 @@
     }];
     [self.view addSubview:view];
 }
+
+#pragma mark - HTTP
+
+#pragma mark - Delegate
+
+#pragma mark - Public
+
+#pragma mark - Private
+
+#pragma mark - Setter
+
+#pragma mark - Getter
 
 @end

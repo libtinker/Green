@@ -6,4 +6,6 @@ project 'Green.xcworkspace'
 target 'Green' do
      pod 'ZJJNetwork', :path => "locallib/ZJJNetwork"
      pod 'ZJJCommon', :path => "locallib/ZJJCommon"
+     pod 'Project', :path => "locallib/Project"
+
 end

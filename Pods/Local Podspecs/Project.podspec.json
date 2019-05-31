@@ -1,0 +1,32 @@
+{
+  "name": "Project",
+  "version": "0.0.2",
+  "summary": "项目",
+  "authors": {
+    "天空吸引我": "2028002516@qq.com"
+  },
+  "requires_arc": true,
+  "description": "Project for Green",
+  "source": {
+    "local": "./",
+    "tag": "0.0.2"
+  },
+  "homepage": "https://github.com/zhengjunjie11/ZJJNetWork",
+  "platforms": {
+    "ios": "9.0"
+  },
+  "subspecs": [
+    {
+      "name": "Home",
+      "source_files": "Home/ViewController/*.{h,m}"
+    },
+    {
+      "name": "Mine",
+      "source_files": "Mine/ViewController/*.{h,m}"
+    },
+    {
+      "name": "Base",
+      "source_files": "Base/*.{h,m}"
+    }
+  ]
+}

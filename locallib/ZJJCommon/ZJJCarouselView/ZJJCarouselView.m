@@ -21,8 +21,7 @@ static const int imageBtnCount = 3;
 @end
 
 @implementation ZJJCarouselView
--(instancetype)initWithFrame:(CGRect)frame imageUrls:(NSArray *)imageUrls didSelectBlock:(DidSelectBlock)didSelectBlock
-{
+- (instancetype)initWithFrame:(CGRect)frame imageUrls:(NSArray *)imageUrls didSelectBlock:(DidSelectBlock)didSelectBlock {
     if (self = [super initWithFrame:frame]) {
         [self setDefaultParm];//默认开启自动轮播
         [self addSubview:self.scrollView];
@@ -151,7 +150,7 @@ static const int imageBtnCount = 3;
 }
 
 #pragma mark - UIScrollViewDelegate
--(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     NSInteger page = 0;
     //用来拿最小偏移量
     CGFloat minDistance = MAXFLOAT;
@@ -167,18 +166,22 @@ static const int imageBtnCount = 3;
     }
     self.pageControl.currentPage = page;
 }
+
 //开始拖拽的时候停止计时器
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     [self stopTimer];
 }
+
 //结束拖拽的时候开始定时器
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     [self startTimer];
 }
+
 //结束拖拽的时候更新image内容
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [self updateContent];
 }
+
 //scroll滚动动画结束的时候更新image内容
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     [self updateContent];
@@ -193,6 +196,7 @@ static const int imageBtnCount = 3;
     }
     
 }
+
 //停止计时器
 - (void)stopTimer {
     if (_isAutomaticTransmission) {
@@ -202,12 +206,14 @@ static const int imageBtnCount = 3;
         self.timer = nil;
     }
 }
+
 //通过改变contentOffset * 2换到下一张图片
 - (void)nextImage {
     CGFloat width = self.bounds.size.width;
     [self.scrollView setContentOffset:CGPointMake(2 * width, 0) animated:YES];
 }
--(void)imageBtnClicked:(UIButton *)button{
+
+- (void)imageBtnClicked:(UIButton *)button{
     NSInteger index = button.tag;
     if (_didSelectBlock) {
         _didSelectBlock(index);

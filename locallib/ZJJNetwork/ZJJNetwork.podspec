@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.summary      = "小型网络库，封装AFNetworking."
 
   s.description  = <<-DESC
-    ZJJNetwork for Live
+    ZJJNetwork for Green
   DESC
 
   s.source       = { :local => './', :tag => '0.0.1' }

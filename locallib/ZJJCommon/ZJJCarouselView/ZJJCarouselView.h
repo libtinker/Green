@@ -12,7 +12,7 @@ typedef void(^DidSelectBlock)(NSInteger index);
 
 @interface ZJJCarouselView : UIView
 
--(instancetype)initWithFrame:(CGRect)frame imageUrls:(NSArray *)imageUrls didSelectBlock:(DidSelectBlock)didSelectBlock;
+- (instancetype)initWithFrame:(CGRect)frame imageUrls:(NSArray *)imageUrls didSelectBlock:(DidSelectBlock)didSelectBlock;
 
 /**图片地址数组*/
 @property (nonatomic, copy) NSArray *imageUrls;

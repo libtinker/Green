@@ -14,6 +14,13 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - Project (0.0.2):
+    - Project/Base (= 0.0.2)
+    - Project/Home (= 0.0.2)
+    - Project/Mine (= 0.0.2)
+  - Project/Base (0.0.2)
+  - Project/Home (0.0.2)
+  - Project/Mine (0.0.2)
   - SDWebImage (5.0.2):
     - SDWebImage/Core (= 5.0.2)
   - SDWebImage/Core (5.0.2)
@@ -26,6 +33,7 @@ PODS:
     - AFNetworking
 
 DEPENDENCIES:
+  - Project (from `locallib/Project`)
   - ZJJCommon (from `locallib/ZJJCommon`)
   - ZJJNetwork (from `locallib/ZJJNetwork`)
 
@@ -35,6 +43,8 @@ SPEC REPOS:
     - SDWebImage
 
 EXTERNAL SOURCES:
+  Project:
+    :path: locallib/Project
   ZJJCommon:
     :path: locallib/ZJJCommon
   ZJJNetwork:
@@ -42,10 +52,11 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Project: ac868a4ca930b9c77d6dd0cf45adbe8242a1ff11
   SDWebImage: 6764b5fa0f73c203728052955dbefa2bf1f33282
-  ZJJCommon: 41758a8a2f5e5d1401085dc56910bae236d1954e
-  ZJJNetwork: 9f948313e997ee0a6c016ec58317ab9c86fffecd
+  ZJJCommon: 02553fe5049dc54e6e43e53a712d9831ec8e4a2c
+  ZJJNetwork: 7e9d21398b24dae2aab4a3fd85414fe0994b3af3
 
-PODFILE CHECKSUM: fbaec4948d8b123eb9dfb594375229436423c594
+PODFILE CHECKSUM: 25a944e4bb56dac87d9f7d15e8389f008911c136
 
 COCOAPODS: 1.7.0
