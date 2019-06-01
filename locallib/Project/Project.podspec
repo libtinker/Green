@@ -28,7 +28,7 @@ s.subspec 'Home' do |ss|
     sss.source_files = 'Home/View/*.{h,m}'
   end
   ss.subspec 'Resouce' do |sss|
-    sss.source_files = 'Home/Resouce/*.{png}'
+    sss.resources = 'Home/Resouce/*.{png,bundle}'
   end
 end
 

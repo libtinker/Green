@@ -40,9 +40,8 @@ API_AVAILABLE(ios(10.0))
         _button = [UIButton buttonWithType:UIButtonTypeCustom];
         _button.bounds =  CGRectMake(0, 0, 59, 57);
         _button.center = self.center;
-        _button.backgroundColor = [UIColor redColor];
-        UIImage *image = [UIImage imageNamed:@"poster_play.png"];
-        [_button setImage:[UIImage imageNamed:@"poster_play"] forState:UIControlStateNormal];
+        UIImage *image = [UIImage imageNamed:@"video.bundle/poster_play"];
+        [_button setImage:image forState:UIControlStateNormal];
         [_button addTarget:self action:@selector(playAction) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_button];
         
@@ -100,10 +99,14 @@ API_AVAILABLE(ios(10.0))
         if (@available(iOS 10.0, *)) {
             if (_playStatus == AVPlayerTimeControlStatusWaitingToPlayAtSpecifiedRate) {
                 // do something
+                _button.hidden = YES;
+
             }else if (_playStatus == AVPlayerTimeControlStatusPlaying) {//正在播放
                 [self.myPlayer pause];
+                _button.hidden = NO;
             }else if (_playStatus == AVPlayerTimeControlStatusPaused) {//暂停
                 [self.myPlayer play];
+                _button.hidden = YES;
             }
         } else {
             // Fallback on earlier versions
