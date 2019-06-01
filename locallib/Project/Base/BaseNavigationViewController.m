@@ -37,7 +37,7 @@
 + (void)setupNavigationBarTheme {
     UINavigationBar * navBar = [UINavigationBar appearance];
 
-    navBar.translucent = NO;
+//    navBar.translucent = NO;
     
     // 设置导航栏title属性
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]}];

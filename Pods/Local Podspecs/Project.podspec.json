@@ -11,7 +11,7 @@
     "local": "./",
     "tag": "0.0.2"
   },
-  "homepage": "https://github.com/zhengjunjie11/ZJJNetWork",
+  "homepage": "https://github.com/zhengjunjie11/Green/tree/master/locallib/Project",
   "platforms": {
     "ios": "9.0"
   },
@@ -22,6 +22,14 @@
         {
           "name": "ViewController",
           "source_files": "Home/ViewController/*.{h,m}"
+        },
+        {
+          "name": "View",
+          "source_files": "Home/View/*.{h,m}"
+        },
+        {
+          "name": "Resouce",
+          "source_files": "Home/Resouce/*.{png}"
         }
       ]
     },

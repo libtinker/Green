@@ -50,7 +50,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     HomeViewController *homeCtrl = [[HomeViewController alloc] init];
-    [self addChildVc:homeCtrl title:@"首页" imageName:nil selectedImageName:nil];
+    [self addChildVc:homeCtrl title:@"首页" imageName:[UIImage imageNamed:@"full_exit"] selectedImageName:nil];
 
     MineViewController *mineCtrl = [[MineViewController alloc] init];
     [self addChildVc:mineCtrl title:@"我的" imageName:nil selectedImageName:nil];

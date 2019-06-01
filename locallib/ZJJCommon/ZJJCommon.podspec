@@ -21,8 +21,8 @@ s.author             = { "天空吸引我" => "2028002516@qq.com" }
 s.dependency 'SDWebImage'
 s.ios.deployment_target = '9.0'
 
-s.subspec 'ZJJCarouselView' do |ss|
-ss.source_files = 'ZJJCarouselView/*.{h,m}'
+s.subspec 'JJKit' do |ss|
+ss.source_files = 'JJKit/*.{h,m}'
 end
 
 end

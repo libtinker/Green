@@ -34,7 +34,7 @@
                 _baseUrl = @"http://127.0.0.1:6060";
                 break;
             case EnvironmentTypeTest:
-                _baseUrl = @"http://127.0.0.1:6061";
+                _baseUrl = @"http://192.168.0.100:6061";
                 break;
             case EnvironmentTypePrepare:
                 _baseUrl = @"http://127.0.0.1:6060";

@@ -11,7 +11,7 @@
     "local": "./",
     "tag": "0.0.1"
   },
-  "homepage": "https://github.com/zhengjunjie11/ZJJNetWork",
+  "homepage": "https://github.com/zhengjunjie11/Green/tree/master/locallib/ZJJCommon",
   "dependencies": {
     "SDWebImage": [
 
@@ -22,8 +22,8 @@
   },
   "subspecs": [
     {
-      "name": "ZJJCarouselView",
-      "source_files": "ZJJCarouselView/*.{h,m}"
+      "name": "JJKit",
+      "source_files": "JJKit/*.{h,m}"
     }
   ]
 }

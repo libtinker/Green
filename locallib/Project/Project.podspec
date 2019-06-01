@@ -24,6 +24,12 @@ s.subspec 'Home' do |ss|
   ss.subspec 'ViewController' do |sss|
     sss.source_files = 'Home/ViewController/*.{h,m}'
   end
+  ss.subspec 'View' do |sss|
+    sss.source_files = 'Home/View/*.{h,m}'
+  end
+  ss.subspec 'Resouce' do |sss|
+    sss.source_files = 'Home/Resouce/*.{png}'
+  end
 end
 
 s.subspec 'Mine' do |ss|

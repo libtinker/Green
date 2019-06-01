@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0210A0BBF33C65581612CCFA /* libPods-Green.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B38F2C1CDA2B5993F76A776 /* libPods-Green.a */; };
+		0210A0BBF33C65581612CCFA /* libPods-Green.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B38F2C1CDA2B5993F76A776 /* libPods-Green.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		5616F72B229FD07100F51217 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5616F72A229FD07100F51217 /* AppDelegate.m */; };
 		5616F731229FD07100F51217 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5616F72F229FD07100F51217 /* Main.storyboard */; };
 		5616F733229FD07400F51217 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5616F732229FD07400F51217 /* Assets.xcassets */; };
