@@ -37,16 +37,20 @@
 + (void)setupNavigationBarTheme {
     UINavigationBar * navBar = [UINavigationBar appearance];
 
+    navBar.translucent = YES;
+    [navBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    [navBar setShadowImage:[UIImage new]];
+
 //    navBar.translucent = NO;
     
     // 设置导航栏title属性
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]}];
+    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     // 设置导航栏颜色
-    [navBar setBarTintColor:[UIColor greenColor]];
-
-    UIImage *image = [UIImage imageNamed:@"nav_64"];
-
-    [navBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
+//    [navBar setBarTintColor:[UIColor greenColor]];
+//
+//    UIImage *image = [UIImage imageNamed:@"nav_64"];
+//
+//    [navBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
 
 }
 

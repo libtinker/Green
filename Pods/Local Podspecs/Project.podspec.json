@@ -29,7 +29,7 @@
         },
         {
           "name": "Resouce",
-          "resources": "Home/Resouce/*.{png,bundle}"
+          "resources": "Home/Resouce/*.{png,bundle,mp4}"
         }
       ]
     },

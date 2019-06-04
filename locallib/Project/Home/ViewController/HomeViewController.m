@@ -6,130 +6,139 @@
 //  Copyright © 2019 天空吸引我. All rights reserved.
 //
 
+static const int videoViewCount = 3;
+
 #import "HomeViewController.h"
-#import "DetailViewController.h"
-#import "ZJJNetwork.h"
-#import "JJCarouselView.h"
+#import "VideoView.h"
 
-@interface HomeViewController ()
+@interface HomeViewController ()<UIScrollViewDelegate>
 {
-    NSMutableArray *_dataArray;
-    NSMutableArray *_imgArray;
-    NSArray *_carouselArray;
+    NSMutableArray *dataArray;
 }
-@property (nonatomic,strong) UILabel *leftLabel;
-@property (nonatomic,strong) UITableView *tableView;
-@property (nonatomic,strong) JJCarouselView *carouselView;
-
+//@property (nonatomic,strong) VideoView *videoView;
+@property (nonatomic,strong) UIScrollView *scrollView;
+@property (nonatomic,assign) NSInteger currentPage;
 @end
 
 @implementation HomeViewController
 
 #pragma mark - LifeCycle
 
-- (instancetype)init {
-    if (self = [super init]) {
-        _dataArray = [[NSMutableArray alloc] init];
-        _imgArray = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //测试
 
-    // Do any additional setup after loading the view.
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:self.leftLabel];
-    self.navigationItem.leftBarButtonItem = item ;
+    NSString * urlString1 = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp4"];
+    NSString * urlString2 = [[NSBundle mainBundle] pathForResource:@"test2" ofType:@"mp4"];
+    dataArray = [[NSMutableArray alloc] init];
+    [dataArray addObject:urlString1];
+     [dataArray addObject:urlString2];
+    [self.view addSubview:self.scrollView];
+    self.currentPage = 1;
 
-    [_dataArray addObject:@"1"];
-    [_dataArray addObject:@"1"];
-    [_dataArray addObject:@"1"];
-    [_dataArray addObject:@"1"];
+    CGFloat width = self.view.bounds.size.width;
+    CGFloat height = self.view.bounds.size.height;
+    for (int i = 0;i < videoViewCount; i++) {
+        CGRect frame = CGRectMake(0, i*height, width, height);
+      VideoView * _videoView = [[VideoView alloc] initWithFrame:frame];
 
-    [self.view addSubview:self.tableView];
-    [self requestRecommend];
+        if (i == 1) {
+            [_videoView playWithUrlString:dataArray[0]];
+        }
+        [self.scrollView addSubview:_videoView];
+    }
+
+
+    self.scrollView.contentSize = CGSizeMake(0, height*videoViewCount);
+//    self.scrollView.contentOffset = CGPointMake(0, height);
+
+    [self.scrollView setContentOffset:CGPointMake(0,  height) animated:YES];
+
+//    [self setContent];
+
+
+
 }
 
 #pragma mark - HTTP
-- (void)requestRecommend {
-    NSDictionary *pram = @{
-                           @"username":@"110122222",
-                           @"passwold":@"q111111"
-                           };
-    __weak NSMutableArray *imgCarouseArr = _imgArray;
-    [ZJJNetwork POST:@"recommend" parameters:pram success:^(id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
-        NSArray *arr = responseObject[@"data"];
-        _carouselArray = arr;
-        for (int i=0; i<arr.count; i++) {
-            NSDictionary *dict = arr[i];
-            [imgCarouseArr addObject:dict[@"img_url"]];
-        }
-        self.carouselView.imageUrls = (NSArray *)imgCarouseArr;
-    } failure:^(NSError * _Nullable error, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
-    }];
-}
+
 
 #pragma mark - Delegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _dataArray.count;
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    NSInteger page = 0;
+//    //用来拿最小偏移量
+//    CGFloat minDistance = MAXFLOAT;
+//
+//    for (int i=0; i<self.scrollView.subviews.count; i++) {
+//        VideoView *imagBtn = self.scrollView.subviews[i];
+//        CGFloat distance = 0;
+//        distance = ABS(imagBtn.frame.origin.y - scrollView.contentOffset.y);
+//        if (distance<minDistance) {
+//            minDistance = distance;
+//            page = imagBtn.tag;
+//        }
+//    }
+//    self.currentPage = page;
+}
+//结束拖拽的时候更新image内容
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+//    [self updateContent];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(UITableViewCell.class) forIndexPath:indexPath];
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
-    return cell;
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+//    VideoView *imgBtn = self.scrollView.subviews[1];
+//    [imgBtn clear];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIEdgeInsets UIEgde = UIEdgeInsetsMake(0, 16, 0, 16);
-    [cell setSeparatorInset:UIEgde];
-}
 #pragma mark - Public
 
 #pragma mark - Private
+//设置显示内容
+- (void)setContent{
+    for (int i=0; i<self.scrollView.subviews.count; i++) {
+        NSInteger index = self.currentPage;
+        VideoView *imgBtn = self.scrollView.subviews[i];
+        if (i == 0) {
+            index--;
+        }else if (i == 2){
+            index++;
+        }
+        if (index<0) {
+            index = dataArray.count-1;
+        }else if (index == dataArray.count) {
+            index = 0;
+        }
+        imgBtn.tag = index;
+        NSLog(@"------------%d",index);
+        //只是图片的加载方式
+    }
+    self.scrollView.contentOffset = CGPointMake(0, self.view.frame.size.height);
+    VideoView *imgBtn = self.scrollView.subviews[1];
+    [imgBtn playWithUrlString:dataArray[imgBtn.tag]];
 
+}
+
+//状态改变之后更新显示内容
+- (void)updateContent {
+    CGFloat height = self.view.bounds.size.height;
+    [self setContent];
+    self.scrollView.contentOffset = CGPointMake(0, height);
+}
 #pragma mark - Setter
 
 #pragma mark - Getter
 
-- (UILabel *)leftLabel {
-    if (!_leftLabel) {
-        _leftLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 88, 44)];
-        _leftLabel.text = @"绿色";
-        _leftLabel.textColor = [UIColor whiteColor];
-        _leftLabel.font = [UIFont boldSystemFontOfSize:24];
-        _leftLabel.textAlignment = NSTextAlignmentCenter;
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] init];
+        _scrollView.frame = self.view.frame;
+        _scrollView.delegate = self;
+        _scrollView.showsVerticalScrollIndicator = NO;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.pagingEnabled = YES;
+        _scrollView.bounces = NO;
     }
-    return _leftLabel;
-}
-
-- (UITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.tableHeaderView = self.carouselView;
-        [_tableView registerClass:UITableViewCell.class forCellReuseIdentifier:NSStringFromClass(UITableViewCell.class)];
-    }
-    return _tableView;
-}
-
-- (JJCarouselView *)carouselView {
-    if (!_carouselView) {
-        _carouselView = [[JJCarouselView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 250) imageUrls:@[] imgClicked:^(NSInteger index) {
-            DetailViewController *ctrl = [[DetailViewController alloc] init];
-            NSDictionary *dict = _carouselArray[index];
-            ctrl.url = dict[@"url"];
-            [self presentViewController:ctrl animated:NO completion:nil];
-        }];
-    }
-    return _carouselView;
+    return _scrollView;
 }
 @end

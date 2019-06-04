@@ -23,9 +23,14 @@
     BaseTabBarViewController *tabbarVC = [[BaseTabBarViewController alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
     [self.window makeKeyAndVisible];
+    self.window.layer.contents = (id)[UIImage imageNamed:@"img_video_loading"].CGImage;
     self.window.backgroundColor = UIColor.whiteColor;
     self.window.rootViewController = tabbarVC;
-
+    if (@available(iOS 11.0, *)) {
+        [UIScrollView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        [UITableView appearance].estimatedSectionFooterHeight = 0;
+        [UITableView appearance].estimatedSectionHeaderHeight = 0;
+    }
     return YES;
 }
 

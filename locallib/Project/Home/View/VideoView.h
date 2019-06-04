@@ -10,8 +10,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface VideoView : UIView
-- (instancetype)initWithFrame:(CGRect)frame urlString:(NSString *)urlString;
-
+- (instancetype)initWithFrame:(CGRect)frame;
+- (void)playWithUrlString:(NSString *)urlString;
+- (void)clear;
 @end
 
 NS_ASSUME_NONNULL_END

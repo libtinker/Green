@@ -56,4 +56,14 @@
     return [self colorWithHexString:color alpha:1.0f];
 }
 
+- (UIImage *)image {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 0.5f, 0.5f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [self CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return theImage;
+}
 @end

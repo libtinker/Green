@@ -29,6 +29,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIColor *)colorWithHexString:(NSString *)color;
 
+
+/**
+ UIColor转UIImage
+
+ @return UIImage
+ */
+- (UIImage *)image;
 @end
 
 NS_ASSUME_NONNULL_END
