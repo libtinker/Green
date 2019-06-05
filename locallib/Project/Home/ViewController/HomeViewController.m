@@ -6,139 +6,116 @@
 //  Copyright © 2019 天空吸引我. All rights reserved.
 //
 
-static const int videoViewCount = 3;
 
 #import "HomeViewController.h"
-#import "VideoView.h"
+#import "HomeTableViewCell.h"
 
-@interface HomeViewController ()<UIScrollViewDelegate>
+@interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
-    NSMutableArray *dataArray;
+    NSMutableArray *_dataArray;
+    NSIndexPath *_beforeIndexPath;
+    HomeTableViewCell *_beforeCell;
 }
-//@property (nonatomic,strong) VideoView *videoView;
-@property (nonatomic,strong) UIScrollView *scrollView;
-@property (nonatomic,assign) NSInteger currentPage;
+@property (nonatomic,strong) UITableView *tableView;
 @end
 
 @implementation HomeViewController
 
 #pragma mark - LifeCycle
 
+- (instancetype)init {
+    if (self = [super init]) {
+        //测试
+        NSString * urlString1 = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp4"];
+        NSString * urlString2 = [[NSBundle mainBundle] pathForResource:@"test2" ofType:@"mp4"];
+        _dataArray = [[NSMutableArray alloc] init];
+        [_dataArray addObject:urlString1];
+        [_dataArray addObject:urlString2];
+        [_dataArray addObject:urlString1];
+        [_dataArray addObject:urlString2];
+        [_dataArray addObject:urlString1];
+        [_dataArray addObject:urlString2];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //测试
+    self.navigationItem.title = @"推荐";
+    [self.view addSubview:self.tableView];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _beforeIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        _beforeCell = [_tableView cellForRowAtIndexPath:_beforeIndexPath];
+        [_beforeCell playUrlString:_dataArray[0]];
+    });
+}
 
-    NSString * urlString1 = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp4"];
-    NSString * urlString2 = [[NSBundle mainBundle] pathForResource:@"test2" ofType:@"mp4"];
-    dataArray = [[NSMutableArray alloc] init];
-    [dataArray addObject:urlString1];
-     [dataArray addObject:urlString2];
-    [self.view addSubview:self.scrollView];
-    self.currentPage = 1;
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
 
-    CGFloat width = self.view.bounds.size.width;
-    CGFloat height = self.view.bounds.size.height;
-    for (int i = 0;i < videoViewCount; i++) {
-        CGRect frame = CGRectMake(0, i*height, width, height);
-      VideoView * _videoView = [[VideoView alloc] initWithFrame:frame];
-
-        if (i == 1) {
-            [_videoView playWithUrlString:dataArray[0]];
-        }
-        [self.scrollView addSubview:_videoView];
-    }
-
-
-    self.scrollView.contentSize = CGSizeMake(0, height*videoViewCount);
-//    self.scrollView.contentOffset = CGPointMake(0, height);
-
-    [self.scrollView setContentOffset:CGPointMake(0,  height) animated:YES];
-
-//    [self setContent];
-
-
-
+    [_beforeCell pause];
 }
 
 #pragma mark - HTTP
 
 
 #pragma mark - Delegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    NSInteger page = 0;
-//    //用来拿最小偏移量
-//    CGFloat minDistance = MAXFLOAT;
-//
-//    for (int i=0; i<self.scrollView.subviews.count; i++) {
-//        VideoView *imagBtn = self.scrollView.subviews[i];
-//        CGFloat distance = 0;
-//        distance = ABS(imagBtn.frame.origin.y - scrollView.contentOffset.y);
-//        if (distance<minDistance) {
-//            minDistance = distance;
-//            page = imagBtn.tag;
-//        }
-//    }
-//    self.currentPage = page;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _dataArray.count;
 }
-//结束拖拽的时候更新image内容
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    HomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(HomeTableViewCell.class) forIndexPath:indexPath];
+    return cell;
+}
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//    [self updateContent];
+    NSLog(@"scrollViewDidEndDecelerating");
+    NSIndexPath *indexPath = [self getIndexPathWithScrollView:scrollView];
+    if (indexPath.row!=_beforeIndexPath.row) {
+        [_beforeCell pause];
+
+        HomeTableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
+        [cell playUrlString:_dataArray[indexPath.row]];
+
+        _beforeIndexPath = indexPath;
+        _beforeCell = cell;
+    }
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-//    VideoView *imgBtn = self.scrollView.subviews[1];
-//    [imgBtn clear];
+    NSLog(@"scrollViewWillBeginDragging");
+    _beforeIndexPath = [self getIndexPathWithScrollView:scrollView];
+    _beforeCell = [_tableView cellForRowAtIndexPath:_beforeIndexPath];
 }
 
 #pragma mark - Public
 
 #pragma mark - Private
-//设置显示内容
-- (void)setContent{
-    for (int i=0; i<self.scrollView.subviews.count; i++) {
-        NSInteger index = self.currentPage;
-        VideoView *imgBtn = self.scrollView.subviews[i];
-        if (i == 0) {
-            index--;
-        }else if (i == 2){
-            index++;
-        }
-        if (index<0) {
-            index = dataArray.count-1;
-        }else if (index == dataArray.count) {
-            index = 0;
-        }
-        imgBtn.tag = index;
-        NSLog(@"------------%d",index);
-        //只是图片的加载方式
-    }
-    self.scrollView.contentOffset = CGPointMake(0, self.view.frame.size.height);
-    VideoView *imgBtn = self.scrollView.subviews[1];
-    [imgBtn playWithUrlString:dataArray[imgBtn.tag]];
 
-}
-
-//状态改变之后更新显示内容
-- (void)updateContent {
-    CGFloat height = self.view.bounds.size.height;
-    [self setContent];
-    self.scrollView.contentOffset = CGPointMake(0, height);
+- (NSIndexPath *)getIndexPathWithScrollView:(UIScrollView *)scrollView {
+    NSInteger page = scrollView.contentOffset.y/self.tableView.frame.size.height;
+    NSLog(@"%d",page);
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:page inSection:0];
+    return indexPath;
 }
 #pragma mark - Setter
 
 #pragma mark - Getter
 
-- (UIScrollView *)scrollView {
-    if (!_scrollView) {
-        _scrollView = [[UIScrollView alloc] init];
-        _scrollView.frame = self.view.frame;
-        _scrollView.delegate = self;
-        _scrollView.showsVerticalScrollIndicator = NO;
-        _scrollView.showsHorizontalScrollIndicator = NO;
-        _scrollView.pagingEnabled = YES;
-        _scrollView.bounces = NO;
+- (UITableView *)tableView {
+    if(!_tableView){
+        _tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStylePlain];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+       _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.rowHeight = self.view.frame.size.height;
+        [_tableView registerClass:[HomeTableViewCell class] forCellReuseIdentifier:NSStringFromClass(HomeTableViewCell.class)];
+        _tableView.showsVerticalScrollIndicator = NO;
+        _tableView.showsHorizontalScrollIndicator = NO;
+        _tableView.pagingEnabled = YES;
     }
-    return _scrollView;
+    return _tableView;
 }
 @end
