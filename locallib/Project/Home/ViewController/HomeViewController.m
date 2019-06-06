@@ -10,6 +10,7 @@
 #import "HomeViewController.h"
 #import "HomeTableViewCell.h"
 #import "ZJJNetwork.h"
+#import "MJRefresh.h"
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -48,21 +49,21 @@
 #pragma mark - HTTP
 
 - (void)requestRecommend {
-
     [ZJJNetwork POST:@"recommend" parameters:nil success:^(id  _Nullable responseObject) {
         NSArray *dataArray = responseObject[@"data"];
         if (dataArray&&dataArray.count>0) {
+            [_dataArray removeAllObjects];
             [_dataArray addObjectsFromArray:dataArray];
             [self.tableView reloadData];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                _beforeIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-                _beforeCell = [_tableView cellForRowAtIndexPath:_beforeIndexPath];
-                NSDictionary *dict = _dataArray[0];
-                 [_beforeCell setData:dict];
-            });
-        }
-    } failure:^(NSError * _Nullable error, id  _Nullable responseObject) {
 
+            _beforeIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            _beforeCell = [_tableView cellForRowAtIndexPath:_beforeIndexPath];
+            NSDictionary *dict = _dataArray[0];
+            [_beforeCell setData:dict];
+        }
+        [self.tableView.mj_header endRefreshing];
+    } failure:^(NSError * _Nullable error, id  _Nullable responseObject) {
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 
@@ -91,6 +92,11 @@
     }
 }
 
+- (BOOL)prefersStatusBarHidden {
+    return YES;// 返回YES表示隐藏，返回NO表示显示
+}
+
+
 #pragma mark - Public
 
 #pragma mark - Private
@@ -117,6 +123,9 @@
         _tableView.showsVerticalScrollIndicator = NO;
         _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.pagingEnabled = YES;
+        _tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+            [self requestRecommend];
+        }];
     }
     return _tableView;
 }

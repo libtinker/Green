@@ -1,2 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-Green/Pods-Green-resources.sh
+${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle
+${PODS_ROOT}/../locallib/Project/Base/Resouce/tabbar_seleted@2x.png
 ${PODS_ROOT}/../locallib/Project/Home/Resouce/video.bundle

@@ -41,7 +41,8 @@
     },
     {
       "name": "Base",
-      "source_files": "Base/*.{h,m}"
+      "source_files": "Base/*.{h,m}",
+      "resources": "Base/Resouce/*.{png,bundle,mp4}"
     }
   ]
 }

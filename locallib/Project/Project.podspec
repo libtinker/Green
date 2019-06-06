@@ -39,6 +39,7 @@ end
 
 s.subspec 'Base' do |ss|
   ss.source_files = 'Base/*.{h,m}'
+  ss.resources = 'Base/Resouce/*.{png,bundle,mp4}'
 end
 
 end

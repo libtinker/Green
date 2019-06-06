@@ -37,6 +37,8 @@
     // 选中状态
     [tabBarItem setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18.0f],NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
 
+//    tabBarItem.imageInsets = UIEdgeInsetsMake(0, -10, -6, -10);
+
     // 高亮状态
     //    [tabBarItem setTitleTextAttributes:@{} forState:UIControlStateHighlighted];
 
@@ -45,7 +47,7 @@
 }
 
 + (void)setupTabBarTheme {
-        UITabBar *tabBar = [UITabBar appearance];
+    UITabBar *tabBar = [UITabBar appearance];
     tabBar.backgroundColor = [UIColor clearColor];
     [tabBar setBackgroundImage:[UIImage new] ];
     [tabBar setShadowImage:UIColor.lightTextColor.image];
@@ -54,14 +56,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     HomeViewController *homeCtrl = [[HomeViewController alloc] init];
-    [self addChildVc:homeCtrl title:@"首页" imageName:[UIImage imageNamed:@"full_exit"] selectedImageName:nil];
+    [self addChildVc:homeCtrl title:@"首页" imageName:@"tabbar_seleted" selectedImageName:@"tabbar_seleted"];
 
 
     MineViewController *mineCtrl = [[MineViewController alloc] init];
-    [self addChildVc:mineCtrl title:@"关注" imageName:nil selectedImageName:nil];
-    [self addChildVc:mineCtrl title:@"消息" imageName:nil selectedImageName:nil];
+//    [self addChildVc:mineCtrl title:@"关注" imageName:@"tabbar_seleted" selectedImageName:@"tabbar_seleted"];
+//    [self addChildVc:mineCtrl title:@"消息" imageName:@"tabbar_seleted" selectedImageName:@"tabbar_seleted"];
 
-    [self addChildVc:mineCtrl title:@"我的" imageName:nil selectedImageName:nil];
+    [self addChildVc:mineCtrl title:@"我的" imageName:@"tabbar_seleted" selectedImageName:@"tabbar_seleted"];
 
 }
 
@@ -71,7 +73,10 @@
     childVc.tabBarItem.title = title;
     childVc.tabBarItem.image = [UIImage imageNamed:imageName];
     childVc.tabBarItem.selectedImage = [[UIImage imageNamed:seletedImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-
+    //文字位置
+    [childVc.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -15)];
+    //图片位置
+    childVc.tabBarItem.imageInsets = UIEdgeInsetsMake(45, 2, 2, 2);
 
     BaseNavigationViewController  *nc = [[BaseNavigationViewController alloc] initWithRootViewController:childVc];
     nc.title = title;

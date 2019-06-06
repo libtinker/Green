@@ -19,7 +19,6 @@
     // Do any additional setup after loading the view.
     
     self.navigationController.navigationItem.leftBarButtonItem =   [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarStyleBlack target:self action:@selector(leftBarButtonItemClicked)];
-
 }
 
 - (void)leftBarButtonItemClicked {

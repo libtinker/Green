@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - MJRefresh (3.2.0)
   - Project (0.0.2):
     - Project/Base (= 0.0.2)
     - Project/Home (= 0.0.2)
@@ -39,6 +40,7 @@ PODS:
     - AFNetworking
 
 DEPENDENCIES:
+  - MJRefresh
   - Project (from `locallib/Project`)
   - ZJJCommon (from `locallib/ZJJCommon`)
   - ZJJNetwork (from `locallib/ZJJNetwork`)
@@ -46,6 +48,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - MJRefresh
     - SDWebImage
 
 EXTERNAL SOURCES:
@@ -58,11 +61,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  Project: 6182898889acbde57af17e30912f6c1d3a366a11
+  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
+  Project: 9fd8477c7266b4e04fa3ca20c4c1bafc720bdcbb
   SDWebImage: c739016e4bdf0a4a1f9a04b5e0385395ad63a282
   ZJJCommon: a256901eb25c88e75e2f9dc55423cf3fad276bd5
   ZJJNetwork: 96756783b4d18737b463251f19b2f6bc39b2ea13
 
-PODFILE CHECKSUM: 61a7874c8540126458f16ef645685368abb97e28
+PODFILE CHECKSUM: 817ac8aaa055ecf1795153fc10c4d691c4a72cdf
 
 COCOAPODS: 1.7.0

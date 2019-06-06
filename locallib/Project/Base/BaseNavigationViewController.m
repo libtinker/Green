@@ -26,6 +26,7 @@
 #pragma mark -  设置导航items数据主题
 + (void)setupNavigationItemsTheme {
     UIBarButtonItem *barButtonItem = [UIBarButtonItem appearance];
+
     // 设置字体颜色
     [barButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont systemFontOfSize:14]} forState:UIControlStateNormal];
     [barButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor redColor]} forState:UIControlStateHighlighted];
