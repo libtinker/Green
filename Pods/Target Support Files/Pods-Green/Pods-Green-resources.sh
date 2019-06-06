@@ -97,11 +97,23 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_resource "${PODS_ROOT}/../locallib/JJRefresh/Resouce/refresh@2x.png"
+  install_resource "${PODS_ROOT}/../locallib/JJRefresh/Resouce/refresh@3x.png"
+  install_resource "${PODS_ROOT}/../locallib/JJRefresh/Resouce/refreshmore@2x.png"
+  install_resource "${PODS_ROOT}/../locallib/JJRefresh/Resouce/refreshmore@3x.png"
+  install_resource "${PODS_ROOT}/../locallib/JJRefresh/Resouce/refreshpull@2x.png"
+  install_resource "${PODS_ROOT}/../locallib/JJRefresh/Resouce/refreshpull@3x.png"
   install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "${PODS_ROOT}/../locallib/Project/Base/Resouce/tabbar_seleted@2x.png"
   install_resource "${PODS_ROOT}/../locallib/Project/Home/Resouce/video.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_resource "${PODS_ROOT}/../locallib/JJRefresh/Resouce/refresh@2x.png"
+  install_resource "${PODS_ROOT}/../locallib/JJRefresh/Resouce/refresh@3x.png"
+  install_resource "${PODS_ROOT}/../locallib/JJRefresh/Resouce/refreshmore@2x.png"
+  install_resource "${PODS_ROOT}/../locallib/JJRefresh/Resouce/refreshmore@3x.png"
+  install_resource "${PODS_ROOT}/../locallib/JJRefresh/Resouce/refreshpull@2x.png"
+  install_resource "${PODS_ROOT}/../locallib/JJRefresh/Resouce/refreshpull@3x.png"
   install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "${PODS_ROOT}/../locallib/Project/Base/Resouce/tabbar_seleted@2x.png"
   install_resource "${PODS_ROOT}/../locallib/Project/Home/Resouce/video.bundle"

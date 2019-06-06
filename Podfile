@@ -4,8 +4,9 @@ inhibit_all_warnings!
 project 'Green.xcworkspace'
 
 target 'Green' do
-     pod 'MJRefresh'
      pod 'ZJJNetwork', :path => "locallib/ZJJNetwork"
      pod 'ZJJCommon', :path => "locallib/ZJJCommon"
      pod 'Project', :path => "locallib/Project"
+     pod 'JJRefresh', :path => "locallib/JJRefresh"
+
 end

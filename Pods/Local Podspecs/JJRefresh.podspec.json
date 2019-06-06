@@ -1,0 +1,33 @@
+{
+  "name": "JJRefresh",
+  "version": "0.0.1",
+  "summary": "下拉刷新，分装MJRefresh.",
+  "description": "JJRefresh for Green",
+  "source": {
+    "local": "./",
+    "tag": "0.0.1"
+  },
+  "homepage": "https://github.com/zhengjunjie11/Green/tree/master/locallib/JJRefresh",
+  "authors": {
+    "天空吸引我": "2028002516@qq.com"
+  },
+  "dependencies": {
+    "MJRefresh": [
+
+    ]
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": [
+    "*.{h,m,mm,cpp,c}",
+    "*/*.{h,m,mm,cpp,c}",
+    "*/*/*.{h,m,mm,cpp,c}"
+  ],
+  "public_header_files": [
+    "*.h",
+    "*/*.h",
+    "*/*/*.h"
+  ],
+  "resources": "Resouce/*.{png,bundle,mp4}"
+}

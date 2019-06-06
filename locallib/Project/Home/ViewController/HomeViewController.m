@@ -10,7 +10,7 @@
 #import "HomeViewController.h"
 #import "HomeTableViewCell.h"
 #import "ZJJNetwork.h"
-#import "MJRefresh.h"
+#import "BaseTableView.h"
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -18,7 +18,7 @@
     NSIndexPath *_beforeIndexPath;
     HomeTableViewCell *_beforeCell;
 }
-@property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) BaseTableView *tableView;
 @end
 
 @implementation HomeViewController
@@ -61,9 +61,9 @@
             NSDictionary *dict = _dataArray[0];
             [_beforeCell setData:dict];
         }
-        [self.tableView.mj_header endRefreshing];
+        [self.tableView endRefreshing];
     } failure:^(NSError * _Nullable error, id  _Nullable responseObject) {
-        [self.tableView.mj_header endRefreshing];
+        [self.tableView endRefreshing];
     }];
 }
 
@@ -113,17 +113,14 @@
 
 - (UITableView *)tableView {
     if(!_tableView){
-        _tableView = [[UITableView alloc]initWithFrame:self.view.frame style:UITableViewStylePlain];
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-       _tableView.backgroundColor = [UIColor clearColor];
+        _tableView = [[BaseTableView alloc]initWithFrame:self.view.frame style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.backgroundColor = [UIColor clearColor];
         _tableView.rowHeight = self.view.frame.size.height;
         [_tableView registerClass:[HomeTableViewCell class] forCellReuseIdentifier:NSStringFromClass(HomeTableViewCell.class)];
-        _tableView.showsVerticalScrollIndicator = NO;
-        _tableView.showsHorizontalScrollIndicator = NO;
         _tableView.pagingEnabled = YES;
-        _tableView.mj_header = [MJRefreshHeader headerWithRefreshingBlock:^{
+        [_tableView headerWithRefreshingBlock:^{
             [self requestRecommend];
         }];
     }
