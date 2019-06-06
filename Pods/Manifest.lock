@@ -20,10 +20,8 @@ PODS:
     - Project/Mine (= 0.0.2)
   - Project/Base (0.0.2)
   - Project/Home (0.0.2):
-    - Project/Home/Resouce (= 0.0.2)
     - Project/Home/View (= 0.0.2)
     - Project/Home/ViewController (= 0.0.2)
-  - Project/Home/Resouce (0.0.2)
   - Project/Home/View (0.0.2)
   - Project/Home/ViewController (0.0.2)
   - Project/Mine (0.0.2):
@@ -60,7 +58,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
-  Project: 720f758f45e2405615daa28bccb259739bf351fe
+  Project: 6182898889acbde57af17e30912f6c1d3a366a11
   SDWebImage: c739016e4bdf0a4a1f9a04b5e0385395ad63a282
   ZJJCommon: a256901eb25c88e75e2f9dc55423cf3fad276bd5
   ZJJNetwork: 96756783b4d18737b463251f19b2f6bc39b2ea13

@@ -89,18 +89,14 @@
     }
     return _describeLabel;
 }
+
 - (void)tapClick {
     [_videoView play];
 }
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+
+- (void)setData:(NSDictionary *)data {
+    _describeLabel.text = data[@"discribe"];
+    _nameLabel.text = data[@"title"];
+    [self playUrlString:data[@"video_url"]];
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
 @end

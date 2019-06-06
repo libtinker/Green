@@ -16,9 +16,9 @@ API_AVAILABLE(ios(10.0))
 @property (strong, nonatomic)AVPlayer *myPlayer;//播放器
 @property (strong, nonatomic)AVPlayerItem *item;//播放单元
 @property (strong, nonatomic)AVPlayerLayer *playerLayer;//播放界面（layer）
-@property (assign, nonatomic)BOOL isReadToPlay;//用来判断当前视频是否准备好播放。
-
 @property (nonatomic,assign) AVPlayerTimeControlStatus playStatus;//播放状态
+
+@property (assign, nonatomic)BOOL isReadToPlay;//用来判断当前视频是否准备好播放。
 @end
 
 @implementation HomeVideoView

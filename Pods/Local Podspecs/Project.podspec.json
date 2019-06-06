@@ -18,6 +18,7 @@
   "subspecs": [
     {
       "name": "Home",
+      "resources": "Home/Resouce/*.{png,bundle,mp4}",
       "subspecs": [
         {
           "name": "ViewController",
@@ -26,10 +27,6 @@
         {
           "name": "View",
           "source_files": "Home/View/*.{h,m}"
-        },
-        {
-          "name": "Resouce",
-          "resources": "Home/Resouce/*.{png,bundle,mp4}"
         }
       ]
     },

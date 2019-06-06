@@ -97,13 +97,9 @@ EOM
   esac
 }
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_resource "${PODS_ROOT}/../locallib/Project/Home/Resouce/test.mp4"
-  install_resource "${PODS_ROOT}/../locallib/Project/Home/Resouce/test2.mp4"
   install_resource "${PODS_ROOT}/../locallib/Project/Home/Resouce/video.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_resource "${PODS_ROOT}/../locallib/Project/Home/Resouce/test.mp4"
-  install_resource "${PODS_ROOT}/../locallib/Project/Home/Resouce/test2.mp4"
   install_resource "${PODS_ROOT}/../locallib/Project/Home/Resouce/video.bundle"
 fi
 

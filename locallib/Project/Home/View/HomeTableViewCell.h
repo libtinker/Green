@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface HomeTableViewCell : UITableViewCell
 - (void)playUrlString:(NSString *)urlString ;
 - (void)pause;
+- (void)setData:(NSDictionary *)data;
 @end
 
 NS_ASSUME_NONNULL_END

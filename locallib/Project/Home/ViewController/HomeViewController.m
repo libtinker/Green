@@ -9,6 +9,7 @@
 
 #import "HomeViewController.h"
 #import "HomeTableViewCell.h"
+#import "ZJJNetwork.h"
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -25,16 +26,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        //测试
-        NSString * urlString1 = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"mp4"];
-        NSString * urlString2 = [[NSBundle mainBundle] pathForResource:@"test2" ofType:@"mp4"];
         _dataArray = [[NSMutableArray alloc] init];
-        [_dataArray addObject:urlString1];
-        [_dataArray addObject:urlString2];
-        [_dataArray addObject:urlString1];
-        [_dataArray addObject:urlString2];
-        [_dataArray addObject:urlString1];
-        [_dataArray addObject:urlString2];
     }
     return self;
 }
@@ -43,11 +35,8 @@
     [super viewDidLoad];
     self.navigationItem.title = @"推荐";
     [self.view addSubview:self.tableView];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        _beforeIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-        _beforeCell = [_tableView cellForRowAtIndexPath:_beforeIndexPath];
-        [_beforeCell playUrlString:_dataArray[0]];
-    });
+
+    [self requestRecommend];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -58,6 +47,24 @@
 
 #pragma mark - HTTP
 
+- (void)requestRecommend {
+
+    [ZJJNetwork POST:@"recommend" parameters:nil success:^(id  _Nullable responseObject) {
+        NSArray *dataArray = responseObject[@"data"];
+        if (dataArray&&dataArray.count>0) {
+            [_dataArray addObjectsFromArray:dataArray];
+            [self.tableView reloadData];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _beforeIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+                _beforeCell = [_tableView cellForRowAtIndexPath:_beforeIndexPath];
+                NSDictionary *dict = _dataArray[0];
+                 [_beforeCell setData:dict];
+            });
+        }
+    } failure:^(NSError * _Nullable error, id  _Nullable responseObject) {
+
+    }];
+}
 
 #pragma mark - Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -76,17 +83,12 @@
         [_beforeCell pause];
 
         HomeTableViewCell *cell = [_tableView cellForRowAtIndexPath:indexPath];
-        [cell playUrlString:_dataArray[indexPath.row]];
+        NSDictionary *dict = _dataArray[indexPath.row];
+        [cell setData:dict];
 
         _beforeIndexPath = indexPath;
         _beforeCell = cell;
     }
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    NSLog(@"scrollViewWillBeginDragging");
-    _beforeIndexPath = [self getIndexPathWithScrollView:scrollView];
-    _beforeCell = [_tableView cellForRowAtIndexPath:_beforeIndexPath];
 }
 
 #pragma mark - Public
