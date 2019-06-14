@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LoginView : UIView
 
+@property (nonatomic,copy) void(^loginBlock)(NSString *userName,NSString *password);
 @end
 
 NS_ASSUME_NONNULL_END

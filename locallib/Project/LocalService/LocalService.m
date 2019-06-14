@@ -20,4 +20,8 @@
     }
     return NO;
 }
+
++ (BOOL)isLogged {
+
+}
 @end

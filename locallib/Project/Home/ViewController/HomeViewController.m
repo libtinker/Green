@@ -41,16 +41,19 @@
     [self.view addSubview:self.tableView];
 
     [self requestRecommend];
-//    NSURL *url = [NSURL URLWithString:@"Green://mine/login"];
-//    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
-//
-//    }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.tabBarController.tabBar.backgroundColor = [UIColor clearColor];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
 
     [_beforeCell pause];
+    self.tabBarController.tabBar.backgroundColor =  [[UIColor blackColor] colorWithAlphaComponent:0.80];;
+
 }
 
 #pragma mark - HTTP
@@ -110,9 +113,7 @@
 
 - (NSIndexPath *)getIndexPathWithScrollView:(UIScrollView *)scrollView {
     NSInteger page = scrollView.contentOffset.y/self.tableView.frame.size.height;
-    NSLog(@"%d",page);
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:page inSection:0];
-    return indexPath;
+    return [NSIndexPath indexPathForRow:page inSection:0];
 }
 #pragma mark - Setter
 

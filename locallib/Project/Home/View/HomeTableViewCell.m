@@ -8,6 +8,7 @@
 #import "HomeTableViewCell.h"
 #import "HomeVideoView.h"
 #import "UILabel+JJAdd.h"
+#import "UIButton+JJAdd.h"
 
 @interface HomeTableViewCell ()
 
@@ -17,7 +18,10 @@
 @property (nonatomic,strong) UIScrollView *scrollView;
 @property (nonatomic,strong) UILabel*nameLabel;
 @property (nonatomic,strong) UILabel *describeLabel;
-
+@property (nonatomic,strong) UIButton *headPortraitPBtn;//头像
+@property (nonatomic,strong) UIButton *praiseBtn;//点赞
+@property (nonatomic,strong) UIButton *commentsBtn;//评论
+@property (nonatomic,strong) UIButton *shareBtn;//分享
 @end
 @implementation HomeTableViewCell
 
@@ -30,6 +34,8 @@
         [self.contentView addSubview:self.playImageView];
         [self.scrollView addSubview:self.nameLabel];
         [self.scrollView addSubview:self.describeLabel];
+        [self.scrollView addSubview:self.headPortraitPBtn];
+        [self.scrollView addSubview:self.praiseBtn];
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
         tapGesture.numberOfTapsRequired = 1;
@@ -101,6 +107,42 @@
         _describeLabel = [UILabel labelWithFrame:CGRectMake(20, [UIScreen mainScreen].bounds.size.height - 80, 280, 20) text:@"好想哭" textColor:UIColor.whiteColor font:[UIFont italicSystemFontOfSize:13]];
     }
     return _describeLabel;
+}
+
+- (UIButton *)headPortraitPBtn {
+    if (!_headPortraitPBtn) {
+        _headPortraitPBtn = [UIButton buttonWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-80, [UIScreen mainScreen].bounds.size.height-340, 60, 60) image:[UIImage imageNamed:@""] target:self action:@selector(headPortraitPBtnClicked)];
+        _headPortraitPBtn.backgroundColor = [UIColor redColor];
+        _headPortraitPBtn.layer.cornerRadius = 30;
+    }
+    return _headPortraitPBtn;
+}
+
+- (UIButton *)praiseBtn {
+    if (!_praiseBtn) {
+        _praiseBtn = [UIButton buttonWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-80, [UIScreen mainScreen].bounds.size.height-260, 60, 60) image:[UIImage imageNamed:@"video.bundle/icon_home_like_before"] target:self action:@selector(praiseBtnClicked)];
+        [_praiseBtn setTitle:@"1.0w" forState:UIControlStateNormal];
+//        _praiseBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+        CGSize titleSize = _praiseBtn.titleLabel.bounds.size;
+        CGSize imageSize = _praiseBtn.imageView.bounds.size;
+        _praiseBtn.imageEdgeInsets = UIEdgeInsetsMake(-imageSize.height/2, titleSize.width/2, imageSize.height/2, -titleSize.width/2);
+        _praiseBtn.titleEdgeInsets = UIEdgeInsetsMake(titleSize.height/2, -imageSize.width/2, -titleSize.height/2, imageSize.width/2);
+        [_praiseBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+    return _praiseBtn;
+}
+
+- (void)headPortraitPBtnClicked {
+    [self pause];
+
+    NSURL *url = [NSURL URLWithString:@"Green://mine/login"];
+    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+
+        }];
+}
+
+- (void)praiseBtnClicked {
+
 }
 
 - (void)tapClick {

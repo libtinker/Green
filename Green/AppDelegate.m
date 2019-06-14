@@ -35,7 +35,7 @@
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     if ([url.scheme isEqualToString:@"Green"]) {
-        return [LocalService openURL:url options:@{}];
+        return [LocalService openURL:url options:options];
     }
     return YES;
 }

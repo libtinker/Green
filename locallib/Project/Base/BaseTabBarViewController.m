@@ -48,7 +48,7 @@
 
 + (void)setupTabBarTheme {
     UITabBar *tabBar = [UITabBar appearance];
-    tabBar.backgroundColor = [UIColor clearColor];
+    tabBar.backgroundColor = [UIColor blackColor];
     [tabBar setBackgroundImage:[UIImage new] ];
     [tabBar setShadowImage:UIColor.lightTextColor.image];
 }
