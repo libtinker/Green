@@ -36,6 +36,9 @@
         NSDictionary *data = responseObject[@"data"];
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
     } failure:^(NSError * _Nullable error, id  _Nullable responseObject) {
+        [JJAlertController alertControllerWithTitle:nil message:responseObject[@"msg"] actionNames:@[@"确定"] handle:^(id  _Nonnull result) {
+
+        }];
     }];
 }
 #pragma mark - Delegate
