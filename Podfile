@@ -8,5 +8,4 @@ target 'Green' do
      pod 'ZJJCommon', :path => "locallib/ZJJCommon"
      pod 'Project', :path => "locallib/Project"
      pod 'JJRefresh', :path => "locallib/JJRefresh"
-
 end

@@ -14,6 +14,7 @@
 @property (nonatomic,strong) HomeVideoView *videoView;
 @property (nonatomic,strong) UIImageView *playImageView;
 
+@property (nonatomic,strong) UIScrollView *scrollView;
 @property (nonatomic,strong) UILabel*nameLabel;
 @property (nonatomic,strong) UILabel *describeLabel;
 
@@ -25,9 +26,10 @@
         self.backgroundColor = [UIColor clearColor];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self.contentView addSubview:self.videoView];
+        [self.contentView addSubview:self.scrollView];
         [self.contentView addSubview:self.playImageView];
-        [self.contentView addSubview:self.nameLabel];
-        [self.contentView addSubview:self.describeLabel];
+        [self.scrollView addSubview:self.nameLabel];
+        [self.scrollView addSubview:self.describeLabel];
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
         tapGesture.numberOfTapsRequired = 1;
@@ -74,6 +76,17 @@
         _playImageView.hidden = YES;
     }
     return _playImageView;
+}
+
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+        _scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width*2, [UIScreen mainScreen].bounds.size.height);
+         _scrollView.pagingEnabled = YES;
+        _scrollView.showsVerticalScrollIndicator = NO;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+    }
+    return _scrollView;
 }
 
 - (UILabel *)nameLabel {

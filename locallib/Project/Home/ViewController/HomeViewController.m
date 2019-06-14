@@ -11,6 +11,8 @@
 #import "HomeTableViewCell.h"
 #import "ZJJNetwork.h"
 #import "BaseTableView.h"
+#import "JJAlertController.h"
+#import "LocalService.h"
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -34,10 +36,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.layer.contents = (id)[UIImage imageNamed:@"img_video_loading"].CGImage;
     self.navigationItem.title = @"推荐";
     [self.view addSubview:self.tableView];
 
     [self requestRecommend];
+//    NSURL *url = [NSURL URLWithString:@"Green://mine/login"];
+//    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
+//
+//    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

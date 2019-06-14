@@ -20,15 +20,23 @@ PODS:
   - Project (0.0.2):
     - Project/Base (= 0.0.2)
     - Project/Home (= 0.0.2)
+    - Project/LocalService (= 0.0.2)
     - Project/Mine (= 0.0.2)
-  - Project/Base (0.0.2)
+  - Project/Base (0.0.2):
+    - Project/Base/BaseView (= 0.0.2)
+  - Project/Base/BaseView (0.0.2)
   - Project/Home (0.0.2):
     - Project/Home/View (= 0.0.2)
     - Project/Home/ViewController (= 0.0.2)
   - Project/Home/View (0.0.2)
   - Project/Home/ViewController (0.0.2)
+  - Project/LocalService (0.0.2)
   - Project/Mine (0.0.2):
+    - Project/Mine/MineService (= 0.0.2)
+    - Project/Mine/View (= 0.0.2)
     - Project/Mine/ViewController (= 0.0.2)
+  - Project/Mine/MineService (0.0.2)
+  - Project/Mine/View (0.0.2)
   - Project/Mine/ViewController (0.0.2)
   - SDWebImage (5.0.4):
     - SDWebImage/Core (= 5.0.4)
@@ -67,7 +75,7 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   JJRefresh: d13f45d2d051f770d1c9c1001e9224b8d7744e49
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
-  Project: 9fd8477c7266b4e04fa3ca20c4c1bafc720bdcbb
+  Project: d08a8d15d0d2406350813a0bd3f12ebf109427a8
   SDWebImage: c739016e4bdf0a4a1f9a04b5e0385395ad63a282
   ZJJCommon: a256901eb25c88e75e2f9dc55423cf3fad276bd5
   ZJJNetwork: 96756783b4d18737b463251f19b2f6bc39b2ea13

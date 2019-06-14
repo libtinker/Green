@@ -35,11 +35,27 @@ s.subspec 'Mine' do |ss|
   ss.subspec 'ViewController' do |sss|
     sss.source_files = 'Mine/ViewController/*.{h,m}'
   end
+
+  ss.subspec 'View' do |sss|
+    sss.source_files = 'Mine/View/*.{h,m}'
+  end
+
+  ss.subspec 'MineService' do |sss|
+    sss.source_files = 'Mine/MineService/*.{h,m}'
+  end
+
 end
 
 s.subspec 'Base' do |ss|
   ss.source_files = 'Base/*.{h,m}'
   ss.resources = 'Base/Resouce/*.{png,bundle,mp4}'
+  ss.subspec 'BaseView' do |sss|
+    sss.source_files = 'Base/BaseView/*.{h,m}'
+  end
+end
+
+s.subspec 'LocalService' do |ss|
+  ss.source_files = 'LocalService/*.{h,m}'
 end
 
 end

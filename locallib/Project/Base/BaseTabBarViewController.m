@@ -12,7 +12,7 @@
 #import "HomeViewController.h"
 #import "UIColor+JJAdd.h"
 
-@interface BaseTabBarViewController ()
+@interface BaseTabBarViewController ()<UITabBarControllerDelegate>
 
 @end
 
@@ -55,6 +55,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.delegate = self;
     HomeViewController *homeCtrl = [[HomeViewController alloc] init];
     [self addChildVc:homeCtrl title:@"首页" imageName:@"tabbar_seleted" selectedImageName:@"tabbar_seleted"];
 
@@ -73,6 +74,7 @@
     childVc.tabBarItem.title = title;
     childVc.tabBarItem.image = [UIImage imageNamed:imageName];
     childVc.tabBarItem.selectedImage = [[UIImage imageNamed:seletedImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    
     //文字位置
     [childVc.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -15)];
     //图片位置
@@ -83,4 +85,7 @@
     [self addChildViewController:nc];
 }
 
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    NSLog(@"tabBarController.selectedIndex:%d",tabBarController.selectedIndex);
+}
 @end
