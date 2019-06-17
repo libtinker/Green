@@ -33,9 +33,11 @@ PODS:
   - Project/LocalService (0.0.2)
   - Project/Mine (0.0.2):
     - Project/Mine/MineService (= 0.0.2)
+    - Project/Mine/Model (= 0.0.2)
     - Project/Mine/View (= 0.0.2)
     - Project/Mine/ViewController (= 0.0.2)
   - Project/Mine/MineService (0.0.2)
+  - Project/Mine/Model (0.0.2)
   - Project/Mine/View (0.0.2)
   - Project/Mine/ViewController (0.0.2)
   - SDWebImage (5.0.4):
@@ -75,11 +77,11 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   JJRefresh: d13f45d2d051f770d1c9c1001e9224b8d7744e49
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
-  Project: d08a8d15d0d2406350813a0bd3f12ebf109427a8
+  Project: f1d5dcb230787f117f0ff37da2e94ee0b9a1be7f
   SDWebImage: c739016e4bdf0a4a1f9a04b5e0385395ad63a282
   ZJJCommon: a256901eb25c88e75e2f9dc55423cf3fad276bd5
   ZJJNetwork: 96756783b4d18737b463251f19b2f6bc39b2ea13
 
-PODFILE CHECKSUM: dfa8a2f7ad912087b7e1bf4ed03a07be6b5f2c62
+PODFILE CHECKSUM: 4b30e35efa5c265414fc243e70cbcfbd4e4a1bf1
 
 COCOAPODS: 1.7.0

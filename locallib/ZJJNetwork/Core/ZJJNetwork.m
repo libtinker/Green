@@ -9,6 +9,8 @@
 #import "ZJJNetwork.h"
 #import <AFNetworking/AFNetworking.h>
 #import "ZJJApiManager.h"
+#import "LocalService.h"
+
 
 static AFHTTPSessionManager *shareManager = nil;
 
@@ -31,7 +33,7 @@ static AFHTTPSessionManager *shareManager = nil;
 //设置Header
 + (void)setHeader:(AFHTTPSessionManager *)manager {
     [manager.requestSerializer setValue:@"ios"forHTTPHeaderField:@"device"];
-    [manager.requestSerializer setValue:@"" forHTTPHeaderField:@"token"];
+    [manager.requestSerializer setValue:[LocalService getUserId] forHTTPHeaderField:@"user_id"];
     [manager.requestSerializer setValue:@"appName" forHTTPHeaderField:@"appName"];
     [manager.requestSerializer setValue:@"app" forHTTPHeaderField:@"platform"];
     [manager.requestSerializer setValue:@"AppleStore"forHTTPHeaderField:@"appMarket"];

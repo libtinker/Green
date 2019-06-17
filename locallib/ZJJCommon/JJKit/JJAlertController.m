@@ -116,6 +116,16 @@
     return _messageLabel;
 }
 
+#pragma mark ---------setter------------
+
+- (void)setMessageString:(NSString *)messageString {
+    if (messageString == nil) {
+        _messageString = @"";
+    }else{
+        _messageString = messageString;
+    }
+}
+
 - (void)createActionButton {
     for (int i=0; i<_actions.count; i++) {
         UIButton *btn = [self createBtnWithAction:_actions[i]];

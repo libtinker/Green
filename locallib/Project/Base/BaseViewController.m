@@ -17,13 +17,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    self.navigationController.navigationItem.leftBarButtonItem =   [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarStyleBlack target:self action:@selector(leftBarButtonItemClicked)];
+
 }
 
-- (void)leftBarButtonItemClicked {
-    
+- (void)setLeftBarButtonItemWithTitle:(NSString *)title action:(nullable SEL)action {
+    self.navigationItem.leftBarButtonItem =   [[UIBarButtonItem alloc] initWithTitle:title style:UIBarStyleBlack target:self action:action];
 }
+
+- (void)setRightBarButtonItemWithTitle:(NSString *)title action:(nullable SEL)action {
+     self.navigationItem.rightBarButtonItem =   [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleDone target:self action:action];
+}
+
 /*
 #pragma mark - Navigation
 

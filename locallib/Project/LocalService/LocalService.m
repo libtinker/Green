@@ -21,7 +21,7 @@
     return NO;
 }
 
-+ (BOOL)isLogged {
-
++ (NSString *)getUserId {
+    return [MineService getUserId];
 }
 @end

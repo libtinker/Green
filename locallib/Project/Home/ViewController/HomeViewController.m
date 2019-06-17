@@ -13,6 +13,7 @@
 #import "BaseTableView.h"
 #import "JJAlertController.h"
 #import "LocalService.h"
+#import "LocalNotification.h"
 
 @interface HomeViewController ()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -41,6 +42,9 @@
     [self.view addSubview:self.tableView];
 
     [self requestRecommend];
+    [LocalNotification addObserverForName:UserDidLoginNotification UsingBlock:^(NSNotification * _Nonnull note) {
+
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -105,7 +109,6 @@
 - (BOOL)prefersStatusBarHidden {
     return YES;// 返回YES表示隐藏，返回NO表示显示
 }
-
 
 #pragma mark - Public
 

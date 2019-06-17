@@ -87,5 +87,7 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     NSLog(@"tabBarController.selectedIndex:%d",tabBarController.selectedIndex);
+    if (tabBarController.selectedIndex == 1) {
+    }
 }
 @end

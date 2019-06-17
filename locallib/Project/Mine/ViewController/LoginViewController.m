@@ -6,9 +6,12 @@
 //
 
 #import "LoginViewController.h"
+#import "RegisterViewController.h"
+#import "LoginModel.h"
 #import "LoginView.h"
 #import "ZJJNetwork.h"
 #import "JJKit.h"
+#import "LocalNotification.h"
 
 @interface LoginViewController ()
 
@@ -20,9 +23,11 @@
 #pragma mark - LifeCycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [[UIColor purpleColor] colorWithAlphaComponent:0.78];
+    self.navigationItem.title = @"登录";
+    self.view.backgroundColor = [UIColor purpleColor];
     [self.view addSubview:self.loginView];
-    // Do any additional setup after loading the view.
+    [self setRightBarButtonItemWithTitle:@"注册" action:@selector(rightBarButtonItemClicked)];
+    [self setLeftBarButtonItemWithTitle:@"返回" action:@selector(backClicked)];
 }
 
 #pragma mark - HTTP
@@ -34,17 +39,24 @@
                            };
     [ZJJNetwork POST:@"login" parameters:parm success:^(id  _Nullable responseObject) {
         NSDictionary *data = responseObject[@"data"];
+        [LoginModel saveUserId:data[@"user_id"]];
+        [LocalNotification postNotificationName:UserDidLoginNotification userInfo:nil];
         [weakSelf dismissViewControllerAnimated:YES completion:nil];
     } failure:^(NSError * _Nullable error, id  _Nullable responseObject) {
-        [JJAlertController alertControllerWithTitle:nil message:responseObject[@"msg"] actionNames:@[@"确定"] handle:^(id  _Nonnull result) {
-
-        }];
+        [JJAlertController alertControllerWithTitle:nil message:responseObject[@"msg"] actionNames:@[@"确定"] handle:nil];
     }];
 }
 #pragma mark - Delegate
 
 #pragma mark - Public
+- (void)rightBarButtonItemClicked {
+    RegisterViewController *ctrl = [[RegisterViewController alloc] init];
+    [self.navigationController pushViewController:ctrl animated:YES];
+}
 
+- (void)backClicked {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 #pragma mark - Private
 
 #pragma mark - Setter
@@ -53,15 +65,11 @@
 
 - (LoginView *)loginView {
     if (!_loginView) {
-        _loginView = [[LoginView alloc] initWithFrame:self.view.frame];
+        _loginView = [[LoginView alloc] initWithFrame:CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-100)];
         __weak LoginViewController *weakSelf = self;
         _loginView.loginBlock = ^(NSString * _Nonnull userName, NSString * _Nonnull password) {
-            if (userName.isNumber&&password.length>6) {
+            if ([LoginModel isLegalWithUsername:userName password:password]) {
                 [weakSelf loginRequest:userName password:password];
-            }else{
-                [JJAlertController alertControllerWithTitle:nil message:@"账号或密码错误  " actionNames:@[@"确定"] handle:^(id  _Nonnull result) {
-
-                }];
             }
         };
     }

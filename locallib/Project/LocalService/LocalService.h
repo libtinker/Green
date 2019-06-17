@@ -11,7 +11,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LocalService : NSObject
 
+/**
+ 通过协议进行操作
+
+ @param url 网址协议
+ @param options 参数
+ @return 操作是否成功
+ */
 + (BOOL)openURL:(NSURL *)url options:(NSDictionary<NSString *, id> *)options;
+
+/**
+获取用户id
+
+ @return 用户id
+ */
++ (NSString *)getUserId;
 @end
 
 NS_ASSUME_NONNULL_END

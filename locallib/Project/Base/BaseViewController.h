@@ -12,7 +12,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseViewController : UIViewController
 
-- (void)leftBarButtonItemClicked;
+
+/**
+ 设置左边的返回按钮
+
+ @param title 标题
+ @param action 事件
+ */
+- (void)setLeftBarButtonItemWithTitle:(NSString *)title action:(nullable SEL)action;
+
+/**
+ 设置右边的d按钮
+
+ @param title 按钮标题
+ @param action 事件
+ */
+- (void)setRightBarButtonItemWithTitle:(NSString *)title action:(nullable SEL)action;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -42,6 +42,10 @@
           "source_files": "Mine/View/*.{h,m}"
         },
         {
+          "name": "Model",
+          "source_files": "Mine/Model/*.{h,m}"
+        },
+        {
           "name": "MineService",
           "source_files": "Mine/MineService/*.{h,m}"
         }

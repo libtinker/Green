@@ -36,6 +36,8 @@
         [self.scrollView addSubview:self.describeLabel];
         [self.scrollView addSubview:self.headPortraitPBtn];
         [self.scrollView addSubview:self.praiseBtn];
+        [self.scrollView addSubview:self.commentsBtn];
+        [self.scrollView addSubview:self.shareBtn];
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
         tapGesture.numberOfTapsRequired = 1;
@@ -71,6 +73,8 @@
     _playImageView.hidden = NO;
     [_videoView pause];
 }
+
+#pragma mark ------ getter ------
 
 - (UIImageView *)playImageView {
     if (!_playImageView) {
@@ -111,7 +115,7 @@
 
 - (UIButton *)headPortraitPBtn {
     if (!_headPortraitPBtn) {
-        _headPortraitPBtn = [UIButton buttonWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-80, [UIScreen mainScreen].bounds.size.height-340, 60, 60) image:[UIImage imageNamed:@""] target:self action:@selector(headPortraitPBtnClicked)];
+        _headPortraitPBtn = [UIButton buttonWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-80, [UIScreen mainScreen].bounds.size.height-369, 60, 60) image:[UIImage imageNamed:@""] target:self action:@selector(headPortraitPBtnClicked)];
         _headPortraitPBtn.backgroundColor = [UIColor redColor];
         _headPortraitPBtn.layer.cornerRadius = 30;
     }
@@ -120,16 +124,36 @@
 
 - (UIButton *)praiseBtn {
     if (!_praiseBtn) {
-        _praiseBtn = [UIButton buttonWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-80, [UIScreen mainScreen].bounds.size.height-260, 60, 60) image:[UIImage imageNamed:@"video.bundle/icon_home_like_before"] target:self action:@selector(praiseBtnClicked)];
-        [_praiseBtn setTitle:@"1.0w" forState:UIControlStateNormal];
-//        _praiseBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-        CGSize titleSize = _praiseBtn.titleLabel.bounds.size;
-        CGSize imageSize = _praiseBtn.imageView.bounds.size;
-        _praiseBtn.imageEdgeInsets = UIEdgeInsetsMake(-imageSize.height/2, titleSize.width/2, imageSize.height/2, -titleSize.width/2);
-        _praiseBtn.titleEdgeInsets = UIEdgeInsetsMake(titleSize.height/2, -imageSize.width/2, -titleSize.height/2, imageSize.width/2);
-        [_praiseBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        CGRect rect = CGRectMake(CGRectGetMinX(_headPortraitPBtn.frame), CGRectGetMaxY(_headPortraitPBtn.frame)+20, 60, 60);
+        _praiseBtn = [self createButtonWithFrame:rect imageName:@"video.bundle/icon_home_like_before" action:@selector(praiseBtnClicked)];
     }
     return _praiseBtn;
+}
+
+- (UIButton *)commentsBtn {
+    if (!_commentsBtn) {
+        CGRect rect = CGRectMake(CGRectGetMinX(_praiseBtn.frame), CGRectGetMaxY(_praiseBtn.frame)+20, 60, 60);
+        _commentsBtn = [self createButtonWithFrame:rect imageName:@"video.bundle/icon_home_comment" action:@selector(commentsBtnClicked)];
+    }
+    return _commentsBtn;
+}
+
+- (UIButton *)shareBtn {
+    if (!_shareBtn) {
+        CGRect rect = CGRectMake(CGRectGetMinX(_commentsBtn.frame), CGRectGetMaxY(_commentsBtn.frame)+20, 60, 60);
+        _shareBtn = [self createButtonWithFrame:rect imageName:@"video.bundle/icon_home_share" action:@selector(shareBtnClicked)];
+    }
+    return _shareBtn;
+}
+
+- (UIButton *)createButtonWithFrame:(CGRect)frame imageName:(NSString *)imageName action:(SEL)action {
+    UIButton *button = [UIButton buttonWithFrame:frame image:[UIImage imageNamed:imageName] target:self action:action];
+    [button setTitle:@"1.0w" forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:12];
+    button.titleEdgeInsets = UIEdgeInsetsMake(button.imageView.frame.size.height + 5.0, - button.imageView.bounds.size.width, .0, .0);
+    button.imageEdgeInsets = UIEdgeInsetsMake(.0, button.titleLabel.bounds.size.width / 2, button.titleLabel.frame.size.height + 5.0, - button.titleLabel.bounds.size.width / 2);
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    return button;
 }
 
 - (void)headPortraitPBtnClicked {
@@ -142,6 +166,14 @@
 }
 
 - (void)praiseBtnClicked {
+
+}
+
+- (void)commentsBtnClicked {
+
+}
+
+- (void)shareBtnClicked {
 
 }
 

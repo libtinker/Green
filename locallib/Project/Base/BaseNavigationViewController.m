@@ -26,12 +26,10 @@
 #pragma mark -  设置导航items数据主题
 + (void)setupNavigationItemsTheme {
     UIBarButtonItem *barButtonItem = [UIBarButtonItem appearance];
-
     // 设置字体颜色
-    [barButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont systemFontOfSize:14]} forState:UIControlStateNormal];
-    [barButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont systemFontOfSize:14]} forState:UIControlStateHighlighted];
-    [barButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor], NSFontAttributeName : [UIFont systemFontOfSize:14]} forState:UIControlStateDisabled];
-
+    [barButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor], NSFontAttributeName : [UIFont systemFontOfSize:14]} forState:UIControlStateNormal];
+    [barButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor], NSFontAttributeName : [UIFont systemFontOfSize:14]} forState:UIControlStateHighlighted];
+    [barButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor], NSFontAttributeName:[UIFont systemFontOfSize:14]} forState:UIControlStateDisabled];
 }
 
 #pragma mark -  设置导航栏主题
@@ -48,11 +46,8 @@
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     // 设置导航栏颜色
 //    [navBar setBarTintColor:[UIColor greenColor]];
-//
 //    UIImage *image = [UIImage imageNamed:@"nav_64"];
-//
 //    [navBar setBackgroundImage:image forBarMetrics:UIBarMetricsDefault];
-
 }
 
 
