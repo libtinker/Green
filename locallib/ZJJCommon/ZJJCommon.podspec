@@ -25,4 +25,8 @@ s.subspec 'JJKit' do |ss|
 ss.source_files = 'JJKit/*.{h,m}'
 end
 
+s.subspec 'Macro' do |ss|
+  ss.source_files = 'Macro/*.{h,m,pch}'
+end
+
 end

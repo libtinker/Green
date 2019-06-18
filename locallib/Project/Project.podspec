@@ -31,6 +31,21 @@ s.subspec 'Home' do |ss|
 
 end
 
+s.subspec 'Hot' do |ss|
+  ss.resources = 'Hot/Resouce/*.{png,bundle,mp4}'
+  ss.subspec 'ViewController' do |sss|
+    sss.source_files = 'Hot/ViewController/*.{h,m}'
+  end
+  ss.subspec 'View' do |sss|
+    sss.source_files = 'Hot/View/*.{h,m}'
+  end
+
+  ss.subspec 'Model' do |sss|
+    sss.source_files = 'Hot/Model/*.{h,m}'
+  end
+
+end
+
 s.subspec 'Mine' do |ss|
   ss.subspec 'ViewController' do |sss|
     sss.source_files = 'Mine/ViewController/*.{h,m}'

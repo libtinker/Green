@@ -31,6 +31,24 @@
       ]
     },
     {
+      "name": "Hot",
+      "resources": "Hot/Resouce/*.{png,bundle,mp4}",
+      "subspecs": [
+        {
+          "name": "ViewController",
+          "source_files": "Hot/ViewController/*.{h,m}"
+        },
+        {
+          "name": "View",
+          "source_files": "Hot/View/*.{h,m}"
+        },
+        {
+          "name": "Model",
+          "source_files": "Hot/Model/*.{h,m}"
+        }
+      ]
+    },
+    {
       "name": "Mine",
       "subspecs": [
         {

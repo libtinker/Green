@@ -20,6 +20,7 @@ PODS:
   - Project (0.0.2):
     - Project/Base (= 0.0.2)
     - Project/Home (= 0.0.2)
+    - Project/Hot (= 0.0.2)
     - Project/LocalService (= 0.0.2)
     - Project/Mine (= 0.0.2)
   - Project/Base (0.0.2):
@@ -30,6 +31,13 @@ PODS:
     - Project/Home/ViewController (= 0.0.2)
   - Project/Home/View (0.0.2)
   - Project/Home/ViewController (0.0.2)
+  - Project/Hot (0.0.2):
+    - Project/Hot/Model (= 0.0.2)
+    - Project/Hot/View (= 0.0.2)
+    - Project/Hot/ViewController (= 0.0.2)
+  - Project/Hot/Model (0.0.2)
+  - Project/Hot/View (0.0.2)
+  - Project/Hot/ViewController (0.0.2)
   - Project/LocalService (0.0.2)
   - Project/Mine (0.0.2):
     - Project/Mine/MineService (= 0.0.2)
@@ -46,7 +54,10 @@ PODS:
   - ZJJCommon (0.0.1):
     - SDWebImage
     - ZJJCommon/JJKit (= 0.0.1)
+    - ZJJCommon/Macro (= 0.0.1)
   - ZJJCommon/JJKit (0.0.1):
+    - SDWebImage
+  - ZJJCommon/Macro (0.0.1):
     - SDWebImage
   - ZJJNetwork (0.0.1):
     - AFNetworking
@@ -77,9 +88,9 @@ SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   JJRefresh: d13f45d2d051f770d1c9c1001e9224b8d7744e49
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
-  Project: f1d5dcb230787f117f0ff37da2e94ee0b9a1be7f
+  Project: 3f0cb266fe3966ea7a4cf640cd79a520a18ca4d1
   SDWebImage: c739016e4bdf0a4a1f9a04b5e0385395ad63a282
-  ZJJCommon: a256901eb25c88e75e2f9dc55423cf3fad276bd5
+  ZJJCommon: bed16e638e16aac38d2d435ed1e0acf49a387b8b
   ZJJNetwork: 96756783b4d18737b463251f19b2f6bc39b2ea13
 
 PODFILE CHECKSUM: 4b30e35efa5c265414fc243e70cbcfbd4e4a1bf1

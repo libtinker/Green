@@ -55,7 +55,8 @@
 #pragma mark - Getter
 - (UITableView *)tableView {
     if(!_tableView){
-        _tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64-49) style:UITableViewStylePlain];
+        _tableView = [[BaseTableView alloc]initWithFrame:CGRectMake(0,STATUSBAR_HEIGHT
+                                                                    +NAVBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT-NAVBAR_HEIGHT-STATUSBAR_HEIGHT-TABBAR_HEIGHT) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.rowHeight = [UIScreen mainScreen].bounds.size.width*9/16+60;

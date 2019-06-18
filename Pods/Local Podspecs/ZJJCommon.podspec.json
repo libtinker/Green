@@ -24,6 +24,10 @@
     {
       "name": "JJKit",
       "source_files": "JJKit/*.{h,m}"
+    },
+    {
+      "name": "Macro",
+      "source_files": "Macro/*.{h,m,pch}"
     }
   ]
 }
