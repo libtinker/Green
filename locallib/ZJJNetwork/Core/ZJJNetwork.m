@@ -44,7 +44,7 @@ static AFHTTPSessionManager *shareManager = nil;
                     parameters:(id)parameters
                        success:(Success)success
      failure:(Failure)failure {
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
     AFHTTPSessionManager *manager = [ZJJNetwork shareManager];
     [ZJJNetwork setHeader:manager];
@@ -55,10 +55,10 @@ static AFHTTPSessionManager *shareManager = nil;
     [param addEntriesFromDictionary:@{@"apiName":URLString}];
 
     [manager POST:baseUrl parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         [ZJJNetwork handleData:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         failure(error,nil);
     }];
 }

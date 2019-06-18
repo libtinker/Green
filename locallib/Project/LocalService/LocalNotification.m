@@ -12,7 +12,9 @@ NSNotificationName const UserDidLoginNotification = @"UserDidLoginNotification";
 @implementation LocalNotification
 + (void)addObserverForName:(nullable NSNotificationName)name UsingBlock:(void (^)(NSNotification *note))block {
     [[NSNotificationCenter defaultCenter] addObserverForName:name object:self queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        block(note);
+        if(block){
+            block(note);
+        }
     }];
 }
 

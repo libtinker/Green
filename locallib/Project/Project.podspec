@@ -44,8 +44,6 @@ s.subspec 'Mine' do |ss|
     sss.source_files = 'Mine/Model/*.{h,m}'
   end
 
-
-
   ss.subspec 'MineService' do |sss|
     sss.source_files = 'Mine/MineService/*.{h,m}'
   end

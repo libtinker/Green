@@ -35,13 +35,12 @@
 #pragma mark -  设置导航栏主题
 + (void)setupNavigationBarTheme {
     UINavigationBar * navBar = [UINavigationBar appearance];
-
+    navBar.barStyle = UIBarStyleBlack;
     navBar.translucent = YES;
     [navBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     [navBar setShadowImage:[UIImage new]];
 
-//    navBar.translucent = NO;
-    
+
     // 设置导航栏title属性
     [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     // 设置导航栏颜色

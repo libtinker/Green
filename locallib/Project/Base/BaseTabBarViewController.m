@@ -10,7 +10,9 @@
 #import "BaseNavigationViewController.h"
 #import "MineViewController.h"
 #import "HomeViewController.h"
+#import "HotViewController.h"
 #import "UIColor+JJAdd.h"
+#import "LocalService.h"
 
 @interface BaseTabBarViewController ()<UITabBarControllerDelegate>
 
@@ -59,11 +61,10 @@
     HomeViewController *homeCtrl = [[HomeViewController alloc] init];
     [self addChildVc:homeCtrl title:@"首页" imageName:@"tabbar_seleted" selectedImageName:@"tabbar_seleted"];
 
+    HotViewController *hotCtrl = [[HotViewController alloc] init];
+    [self addChildVc:hotCtrl title:@"关注" imageName:@"tabbar_seleted" selectedImageName:@"tabbar_seleted"];
 
     MineViewController *mineCtrl = [[MineViewController alloc] init];
-//    [self addChildVc:mineCtrl title:@"关注" imageName:@"tabbar_seleted" selectedImageName:@"tabbar_seleted"];
-//    [self addChildVc:mineCtrl title:@"消息" imageName:@"tabbar_seleted" selectedImageName:@"tabbar_seleted"];
-
     [self addChildVc:mineCtrl title:@"我的" imageName:@"tabbar_seleted" selectedImageName:@"tabbar_seleted"];
 
 }
@@ -87,7 +88,10 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     NSLog(@"tabBarController.selectedIndex:%d",tabBarController.selectedIndex);
-    if (tabBarController.selectedIndex == 1) {
+    if ([LocalService isLogin]==NO) {
+        tabBarController.selectedIndex = 0;
+        NSURL *url = [NSURL URLWithString:@"Green://mine/login"];
+        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {}];
     }
 }
 @end

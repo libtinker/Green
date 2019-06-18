@@ -160,9 +160,7 @@
     [self pause];
 
     NSURL *url = [NSURL URLWithString:@"Green://mine/login"];
-    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {
-
-        }];
+    [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {}];
 }
 
 - (void)praiseBtnClicked {

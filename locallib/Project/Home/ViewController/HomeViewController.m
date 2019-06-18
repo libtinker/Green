@@ -56,8 +56,6 @@
     [super viewWillDisappear:animated];
 
     [_beforeCell pause];
-    self.tabBarController.tabBar.backgroundColor =  [[UIColor blackColor] colorWithAlphaComponent:0.80];;
-
 }
 
 #pragma mark - HTTP

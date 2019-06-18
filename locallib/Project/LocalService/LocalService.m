@@ -24,4 +24,8 @@
 + (NSString *)getUserId {
     return [MineService getUserId];
 }
+
++ (BOOL)isLogin {
+    return [MineService isLogin];
+}
 @end

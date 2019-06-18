@@ -26,6 +26,13 @@ NS_ASSUME_NONNULL_BEGIN
  @return 用户id
  */
 + (NSString *)getUserId;
+
+/**
+ 是否是登录状态
+
+ @return 结果
+ */
++ (BOOL)isLogin;
 @end
 
 NS_ASSUME_NONNULL_END

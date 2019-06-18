@@ -21,18 +21,20 @@
 }
 
 + (BOOL)presentLoginVC {
-
     LoginViewController *ctrl = [[LoginViewController alloc] init];
     BaseNavigationViewController *nc = [[BaseNavigationViewController alloc] initWithRootViewController:ctrl];
-//    ctrl.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//    if (@available(iOS 8.0, *)) {
-//        ctrl.modalPresentationStyle = UIModalPresentationOverFullScreen;
-//    }
     [[self currentViewController] presentViewController:nc animated:YES completion:nil];
     return YES;
 }
 
 + (NSString *)getUserId {
    return [LoginModel getUserId];
+}
+
++ (BOOL)isLogin {
+    if ([MineService getUserId].length > 0) {
+        return YES;
+    }
+    return NO;
 }
 @end
