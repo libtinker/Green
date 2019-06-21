@@ -41,10 +41,11 @@
     self.navigationItem.title = @"推荐";
     [self.view addSubview:self.tableView];
 
-    [self requestRecommend];
+    //[self requestRecommend];
     [LocalNotification addObserverForName:UserDidLoginNotification UsingBlock:^(NSNotification * _Nonnull note) {
 
     }];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -131,6 +132,15 @@
         _tableView.pagingEnabled = YES;
         [_tableView headerWithRefreshingBlock:^{
             [self requestRecommend];
+            //    NSString *path = [[NSBundle mainBundle] pathForResource:@"video.bundle/icon_home_share" ofType:@"png"];
+//            NSURL *fileURL = [NSURL fileURLWithPath:@"/Users/tiankongxiyinwo/Desktop/music/藤田麻衣子-もう恋なんてしない 下午5.42.16.mp3"];
+//            NSArray *array = @[fileURL];
+//
+//            [ZJJNetwork upload:@"http://172.30.14.63:6061" fileURLs:array progress:nil success:^(id  _Nullable responseObject) {
+//                [self.tableView endRefreshing];
+//            } failure:^(NSError * _Nullable error, id  _Nullable responseObject) {
+//                [self.tableView endRefreshing];
+//            }];
         }];
     }
     return _tableView;

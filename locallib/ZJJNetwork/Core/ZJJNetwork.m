@@ -40,6 +40,7 @@ static AFHTTPSessionManager *shareManager = nil;
     [manager.requestSerializer setValue:@"text/plain" forHTTPHeaderField:@"Content-Type"];
 }
 
+#pragma mark - post接口请求
 + (void)POST:(NSString *)URLString
                     parameters:(id)parameters
                        success:(Success)success
@@ -72,6 +73,55 @@ static AFHTTPSessionManager *shareManager = nil;
     }else {//这里只是简单的写一下，实际情况更复杂
         failure(nil,result);
     }
+}
+
++ (void)download:(NSString *)URLString
+        progress:(void (^)(NSProgress *downloadProgress))downloadProgressBlock
+         success:(Success)success
+         failure:(Failure)failure {
+    AFHTTPSessionManager *manager = [ZJJNetwork shareManager];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
+
+    NSURLSessionDownloadTask *task = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+       if (downloadProgressBlock) {
+           downloadProgressBlock(downloadProgress);
+       }
+        //NSLog(@"%f",1.0*downloadProgress.completedUnitCount/downloadProgress.totalUnitCount);
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        NSString *fullPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent:response.suggestedFilename];
+        return [NSURL fileURLWithPath:fullPath];
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        if (error == nil) {
+            success(filePath);
+        }else{
+            failure(error,response);
+        }
+    }];
+    [task resume];
+}
+
++ (void)upload:(NSString *)URLString
+        fileURLs:(NSArray<NSURL *> *)fileURLs
+        progress:(void (^)(NSProgress *downloadProgress))uploadProgressBlock
+        success:(Success)success
+        failure:(Failure)failure {
+    AFHTTPSessionManager *manager = [ZJJNetwork shareManager];
+
+    [manager POST:URLString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        for (int i = 0; i < fileURLs.count; i ++) {
+            NSURL *fileURL = fileURLs[i];
+            [formData appendPartWithFileURL:fileURL name:@"file" error:nil];
+        }
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        NSLog(@"%f",1.0*uploadProgress.completedUnitCount/uploadProgress.totalUnitCount);
+        if (uploadProgressBlock) {
+            uploadProgressBlock(uploadProgress);
+        }
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        success(responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        failure(error,task);
+    }];
 }
 
 @end
