@@ -46,7 +46,7 @@
 }
 
 - (UIViewController *)currentViewController{
-    UIViewController* currentViewController = [self getRootViewController];
+    UIViewController* currentViewController = [self rootViewController];
     BOOL runLoopFind = YES;
     while (runLoopFind) {
         if (currentViewController.presentedViewController) {
@@ -71,7 +71,7 @@
     return currentViewController;
 }
 
-- (UIViewController *)getRootViewController{
+- (UIViewController *)rootViewController{
     UIWindow* window = [[[UIApplication sharedApplication] delegate] window];
     NSAssert(window, @"The window is empty");
     return window.rootViewController;

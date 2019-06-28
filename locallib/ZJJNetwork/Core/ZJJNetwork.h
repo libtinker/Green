@@ -30,7 +30,6 @@ typedef void (^Failure)(NSError * _Nullable error,id _Nullable responseObject);
      success:(Success)success
      failure:(Failure)failure;
 
-
 /**
  下载文件
 
@@ -43,7 +42,6 @@ typedef void (^Failure)(NSError * _Nullable error,id _Nullable responseObject);
         progress:(void (^)(NSProgress *downloadProgress))downloadProgressBlock
          success:(Success)success
          failure:(Failure)failure;
-
 
 /**
  上传文件到服务器

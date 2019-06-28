@@ -1,5 +1,5 @@
 //
-//  LocalService.h
+//  RouteManager.h
 //  AFNetworking
 //
 //  Created by 天空吸引我 on 2019/6/14.
@@ -9,7 +9,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LocalService : NSObject
+@interface RouterManager : NSObject
+
+/**
+ app启动初始化
+
+ @return UIWindow
+ */
++ (UIWindow *)didFinishLaunching;
 
 /**
  通过协议进行操作

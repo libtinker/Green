@@ -9,6 +9,8 @@
 #import "HomeVideoView.h"
 #import "UILabel+JJAdd.h"
 #import "UIButton+JJAdd.h"
+#import "ConstantConfig.h"
+
 
 @interface HomeTableViewCell ()
 
@@ -101,21 +103,21 @@
 
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
-        _nameLabel = [UILabel labelWithFrame:CGRectMake(20, [UIScreen mainScreen].bounds.size.height - 100, 280, 20) text:@"@里贝里告别拜仁" textColor:UIColor.whiteColor font:[UIFont italicSystemFontOfSize:16]];
+        _nameLabel = [UILabel labelWithFrame:CGRectMake(20, [UIScreen mainScreen].bounds.size.height - 40 - SafeAreaBottomHeight-TABBAR_HEIGHT, 280, 20) text:@"@里贝里告别拜仁" textColor:UIColor.whiteColor font:[UIFont italicSystemFontOfSize:16]];
     }
     return _nameLabel;
 }
 
 - (UILabel *)describeLabel {
     if (!_describeLabel) {
-        _describeLabel = [UILabel labelWithFrame:CGRectMake(20, [UIScreen mainScreen].bounds.size.height - 80, 280, 20) text:@"好想哭" textColor:UIColor.whiteColor font:[UIFont italicSystemFontOfSize:13]];
+        _describeLabel = [UILabel labelWithFrame:CGRectMake(20, [UIScreen mainScreen].bounds.size.height - 20 - SafeAreaBottomHeight-TABBAR_HEIGHT, 280, 20) text:@"好想哭" textColor:UIColor.whiteColor font:[UIFont italicSystemFontOfSize:13]];
     }
     return _describeLabel;
 }
 
 - (UIButton *)headPortraitPBtn {
     if (!_headPortraitPBtn) {
-        _headPortraitPBtn = [UIButton buttonWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-80, [UIScreen mainScreen].bounds.size.height-369, 60, 60) image:[UIImage imageNamed:@""] target:self action:@selector(headPortraitPBtnClicked)];
+        _headPortraitPBtn = [UIButton buttonWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-80, [UIScreen mainScreen].bounds.size.height-300-SafeAreaBottomHeight-TABBAR_HEIGHT, 60, 60) image:[UIImage imageNamed:@""] target:self action:@selector(headPortraitPBtnClicked)];
         _headPortraitPBtn.backgroundColor = [UIColor redColor];
         _headPortraitPBtn.layer.cornerRadius = 30;
     }
@@ -164,7 +166,9 @@
 }
 
 - (void)praiseBtnClicked {
-
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(praise)]) {
+        [self.delegate praise];
+    }
 }
 
 - (void)commentsBtnClicked {
@@ -172,16 +176,20 @@
 }
 
 - (void)shareBtnClicked {
-
+    NSString *vedioPath = _data[@"video_url"];
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(share:)]) {
+        [self.delegate share:vedioPath];
+    }
 }
 
 - (void)tapClick {
     [_videoView play];
 }
-
-- (void)setData:(NSDictionary *)data {
+-(void)setData:(NSDictionary *)data {
+    _data = data;
     _describeLabel.text = data[@"discribe"];
     _nameLabel.text = data[@"title"];
     [self playUrlString:data[@"video_url"]];
 }
+
 @end

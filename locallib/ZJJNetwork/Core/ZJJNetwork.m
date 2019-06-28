@@ -9,8 +9,7 @@
 #import "ZJJNetwork.h"
 #import <AFNetworking/AFNetworking.h>
 #import "ZJJApiManager.h"
-#import "LocalService.h"
-
+#import "RouterManager.h"
 
 static AFHTTPSessionManager *shareManager = nil;
 
@@ -23,7 +22,7 @@ static AFHTTPSessionManager *shareManager = nil;
         AFHTTPRequestSerializer* requestSerializer = [AFHTTPRequestSerializer serializer];
         requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
         AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
-        [requestSerializer setTimeoutInterval:60];
+        [requestSerializer setTimeoutInterval:10];
         [shareManager setResponseSerializer:responseSerializer];
         [shareManager setRequestSerializer:requestSerializer];
     });
@@ -33,7 +32,7 @@ static AFHTTPSessionManager *shareManager = nil;
 //设置Header
 + (void)setHeader:(AFHTTPSessionManager *)manager {
     [manager.requestSerializer setValue:@"ios"forHTTPHeaderField:@"device"];
-    [manager.requestSerializer setValue:[LocalService getUserId] forHTTPHeaderField:@"user_id"];
+    [manager.requestSerializer setValue:[RouterManager getUserId] forHTTPHeaderField:@"user_id"];
     [manager.requestSerializer setValue:@"appName" forHTTPHeaderField:@"appName"];
     [manager.requestSerializer setValue:@"app" forHTTPHeaderField:@"platform"];
     [manager.requestSerializer setValue:@"AppleStore"forHTTPHeaderField:@"appMarket"];
@@ -42,16 +41,15 @@ static AFHTTPSessionManager *shareManager = nil;
 
 #pragma mark - post接口请求
 + (void)POST:(NSString *)URLString
-                    parameters:(id)parameters
-                       success:(Success)success
-     failure:(Failure)failure {
+        parameters:(id)parameters
+        success:(Success)success
+        failure:(Failure)failure {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
     AFHTTPSessionManager *manager = [ZJJNetwork shareManager];
     [ZJJNetwork setHeader:manager];
 
     NSString *baseUrl = [ZJJApiManager shareManager].baseUrl;
-
     NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithDictionary:parameters];
     [param addEntriesFromDictionary:@{@"apiName":URLString}];
 
@@ -101,10 +99,10 @@ static AFHTTPSessionManager *shareManager = nil;
 }
 
 + (void)upload:(NSString *)URLString
-        fileURLs:(NSArray<NSURL *> *)fileURLs
-        progress:(void (^)(NSProgress *downloadProgress))uploadProgressBlock
-        success:(Success)success
-        failure:(Failure)failure {
+      fileURLs:(NSArray<NSURL *> *)fileURLs
+      progress:(void (^)(NSProgress *downloadProgress))uploadProgressBlock
+       success:(Success)success
+       failure:(Failure)failure {
     AFHTTPSessionManager *manager = [ZJJNetwork shareManager];
 
     [manager POST:URLString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {

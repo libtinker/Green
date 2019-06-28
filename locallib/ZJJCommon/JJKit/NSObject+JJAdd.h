@@ -36,6 +36,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (UIViewController *)currentViewController;
 
+/**
+ window当前的跟控制器
+
+ @return 控制器
+ */
+- (UIViewController *)rootViewController;
 @end
 
 NS_ASSUME_NONNULL_END

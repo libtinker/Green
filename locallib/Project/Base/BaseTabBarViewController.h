@@ -12,16 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BaseTabBarViewController : UITabBarController
 
-
-/**
- 添加控制器
-
- @param childVc 控制器
- @param title 标题
- @param imageName 图片
- @param seletedImageName 选中图片名字
- */
-- (void)addChildVc:(UIViewController *)childVc title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)seletedImageName;
++ (BOOL)openPath:(NSString *)path data:(NSDictionary<NSString *, id> *)data;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -15,10 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
  通过协议进行操作
 
  @param path 路径
- @param options 参数
+ @param data 参数
  @return 是否处理成功
  */
-+ (BOOL)openPath:(NSString *)path options:(NSDictionary<NSString *, id> *)options;
++ (BOOL)openPath:(NSString *)path data:(NSDictionary<NSString *, id> *)data;
 
 /**
  获取用户id用于网络请求

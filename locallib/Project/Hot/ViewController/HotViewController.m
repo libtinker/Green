@@ -8,6 +8,7 @@
 #import "HotViewController.h"
 #import "BaseTableView.h"
 #import "HotTableViewCell.h"
+#import "ConstantConfig.h"
 
 @interface HotViewController ()<UITableViewDelegate,UITableViewDataSource>
 

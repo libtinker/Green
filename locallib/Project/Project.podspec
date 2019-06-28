@@ -19,6 +19,7 @@ s.homepage     = "https://github.com/zhengjunjie11/Green/tree/master/locallib/Pr
 s.author             = { "天空吸引我" => "2028002516@qq.com" }
 
 s.ios.deployment_target = '9.0'
+s.dependency 'ZJJCommon'
 
 s.subspec 'Home' do |ss|
   ss.resources = 'Home/Resouce/*.{png,bundle,mp4}'

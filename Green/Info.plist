@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Green想访问您的相机</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Green想访问您的相册</string>
+	<key>CFBundleAllowMixedLocalizations</key>
+	<true/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>需要访问您的相册，请点击允许</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -20,6 +28,10 @@
 	<string>1.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
+		<dict>
+			<key>UIApplicationOpenURLOptionsOpenDataKey</key>
+			<dict/>
+		</dict>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>

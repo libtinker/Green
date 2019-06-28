@@ -23,31 +23,47 @@ PODS:
     - Project/Hot (= 0.0.2)
     - Project/LocalService (= 0.0.2)
     - Project/Mine (= 0.0.2)
+    - ZJJCommon
   - Project/Base (0.0.2):
     - Project/Base/BaseView (= 0.0.2)
-  - Project/Base/BaseView (0.0.2)
+    - ZJJCommon
+  - Project/Base/BaseView (0.0.2):
+    - ZJJCommon
   - Project/Home (0.0.2):
     - Project/Home/View (= 0.0.2)
     - Project/Home/ViewController (= 0.0.2)
-  - Project/Home/View (0.0.2)
-  - Project/Home/ViewController (0.0.2)
+    - ZJJCommon
+  - Project/Home/View (0.0.2):
+    - ZJJCommon
+  - Project/Home/ViewController (0.0.2):
+    - ZJJCommon
   - Project/Hot (0.0.2):
     - Project/Hot/Model (= 0.0.2)
     - Project/Hot/View (= 0.0.2)
     - Project/Hot/ViewController (= 0.0.2)
-  - Project/Hot/Model (0.0.2)
-  - Project/Hot/View (0.0.2)
-  - Project/Hot/ViewController (0.0.2)
-  - Project/LocalService (0.0.2)
+    - ZJJCommon
+  - Project/Hot/Model (0.0.2):
+    - ZJJCommon
+  - Project/Hot/View (0.0.2):
+    - ZJJCommon
+  - Project/Hot/ViewController (0.0.2):
+    - ZJJCommon
+  - Project/LocalService (0.0.2):
+    - ZJJCommon
   - Project/Mine (0.0.2):
     - Project/Mine/MineService (= 0.0.2)
     - Project/Mine/Model (= 0.0.2)
     - Project/Mine/View (= 0.0.2)
     - Project/Mine/ViewController (= 0.0.2)
-  - Project/Mine/MineService (0.0.2)
-  - Project/Mine/Model (0.0.2)
-  - Project/Mine/View (0.0.2)
-  - Project/Mine/ViewController (0.0.2)
+    - ZJJCommon
+  - Project/Mine/MineService (0.0.2):
+    - ZJJCommon
+  - Project/Mine/Model (0.0.2):
+    - ZJJCommon
+  - Project/Mine/View (0.0.2):
+    - ZJJCommon
+  - Project/Mine/ViewController (0.0.2):
+    - ZJJCommon
   - SDWebImage (5.0.4):
     - SDWebImage/Core (= 5.0.4)
   - SDWebImage/Core (5.0.4)
@@ -61,12 +77,14 @@ PODS:
     - SDWebImage
   - ZJJNetwork (0.0.1):
     - AFNetworking
+  - ZJJPhoto (0.0.1)
 
 DEPENDENCIES:
   - JJRefresh (from `locallib/JJRefresh`)
   - Project (from `locallib/Project`)
   - ZJJCommon (from `locallib/ZJJCommon`)
   - ZJJNetwork (from `locallib/ZJJNetwork`)
+  - ZJJPhoto (from `locallib/ZJJPhoto`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -83,16 +101,19 @@ EXTERNAL SOURCES:
     :path: locallib/ZJJCommon
   ZJJNetwork:
     :path: locallib/ZJJNetwork
+  ZJJPhoto:
+    :path: locallib/ZJJPhoto
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   JJRefresh: d13f45d2d051f770d1c9c1001e9224b8d7744e49
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
-  Project: 3f0cb266fe3966ea7a4cf640cd79a520a18ca4d1
+  Project: 2d38222575972ac91395d506c3125dbe06688033
   SDWebImage: c739016e4bdf0a4a1f9a04b5e0385395ad63a282
   ZJJCommon: bed16e638e16aac38d2d435ed1e0acf49a387b8b
   ZJJNetwork: 96756783b4d18737b463251f19b2f6bc39b2ea13
+  ZJJPhoto: 871868b1388ea902e8fd1dfdaffeb567a17dbedb
 
-PODFILE CHECKSUM: 4b30e35efa5c265414fc243e70cbcfbd4e4a1bf1
+PODFILE CHECKSUM: bc63372a97b96c2995380a129c104bfa50b4fb72
 
 COCOAPODS: 1.7.0

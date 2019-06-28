@@ -7,8 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "BaseTabBarViewController.h"
-#import "LocalService.h"
+#import "RouterManager.h"
 
 @interface AppDelegate ()
 
@@ -16,26 +15,16 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-
-    BaseTabBarViewController *tabbarVC = [[BaseTabBarViewController alloc] init];
-    self.window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
-    [self.window makeKeyAndVisible];
-    self.window.backgroundColor = UIColor.whiteColor;
-    self.window.rootViewController = tabbarVC;
-    if (@available(iOS 11.0, *)) {
-        [UIScrollView appearance].contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        [UITableView appearance].estimatedSectionFooterHeight = 0;
-        [UITableView appearance].estimatedSectionHeaderHeight = 0;
-    }
+    
+    self.window = [RouterManager didFinishLaunching];
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
     if ([url.scheme isEqualToString:@"Green"]) {
-        return [LocalService openURL:url options:options];
+        return [RouterManager openURL:url options:options];
     }
     return YES;
 }

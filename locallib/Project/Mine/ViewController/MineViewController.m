@@ -7,6 +7,7 @@
 //
 
 #import "MineViewController.h"
+#import "ZJJPhotoAlbumViewController.h"
 
 @interface MineViewController ()
 
@@ -21,6 +22,10 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    ZJJPhotoAlbumViewController *ctrl = [[ZJJPhotoAlbumViewController alloc] init];
+    [self presentViewController:ctrl animated:YES completion:nil];
+}
 #pragma mark - HTTP
 
 #pragma mark - Delegate

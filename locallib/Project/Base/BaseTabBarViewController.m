@@ -11,8 +11,11 @@
 #import "MineViewController.h"
 #import "HomeViewController.h"
 #import "HotViewController.h"
+#import "ZJJCameraViewController.h"
 #import "UIColor+JJAdd.h"
-#import "LocalService.h"
+#import "RouterManager.h"
+#import "NSObject+JJAdd.h"
+
 
 @interface BaseTabBarViewController ()<UITabBarControllerDelegate>
 
@@ -21,31 +24,14 @@
 @implementation BaseTabBarViewController
 
 + (void)initialize {
-
-    // 设置UITabBarItem主题
-    [self setupTabBarItemTheme];
-
-    // 设置UITabBar主题
-    [self setupTabBarTheme];
+    [self setupTabBarItemTheme];// 设置UITabBarItem主题
+    [self setupTabBarTheme];// 设置UITabBar主题
 }
 
 + (void)setupTabBarItemTheme {
     UITabBarItem *tabBarItem = [UITabBarItem appearance];
-
-    /**设置文字属性**/
-    // 普通状态
-    [tabBarItem setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:16.0f], NSForegroundColorAttributeName : [UIColor lightGrayColor]} forState:UIControlStateNormal];
-
-    // 选中状态
-    [tabBarItem setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18.0f],NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected];
-
-//    tabBarItem.imageInsets = UIEdgeInsetsMake(0, -10, -6, -10);
-
-    // 高亮状态
-    //    [tabBarItem setTitleTextAttributes:@{} forState:UIControlStateHighlighted];
-
-    // 不可用状态(disable)
-    //    [tabBarItem setTitleTextAttributes:@{} forState:UIControlStateDisabled];
+    [tabBarItem setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:16.0f], NSForegroundColorAttributeName : [UIColor lightGrayColor]} forState:UIControlStateNormal];// 普通状态
+    [tabBarItem setTitleTextAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18.0f],NSForegroundColorAttributeName : [UIColor whiteColor]} forState:UIControlStateSelected]; // 选中状态
 }
 
 + (void)setupTabBarTheme {
@@ -64,22 +50,24 @@
     HotViewController *hotCtrl = [[HotViewController alloc] init];
     [self addChildVc:hotCtrl title:@"关注" imageName:@"tabbar_seleted" selectedImageName:@"tabbar_seleted"];
 
+    ZJJCameraViewController *cameraNCtrl = [[ZJJCameraViewController alloc] init];
+     [self addChildVc:cameraNCtrl title:@"拍照" imageName:@"tabbar_seleted" selectedImageName:@"tabbar_seleted"];
+
+    UIViewController *ctrl = [[UIViewController alloc] init];
+    [self addChildVc:ctrl title:@"聊天" imageName:@"tabbar_seleted" selectedImageName:@"tabbar_seleted"];
+
     MineViewController *mineCtrl = [[MineViewController alloc] init];
-    [self addChildVc:mineCtrl title:@"我的" imageName:@"tabbar_seleted" selectedImageName:@"tabbar_seleted"];
+    [self addChildVc:mineCtrl title:@"我" imageName:@"tabbar_seleted" selectedImageName:@"tabbar_seleted"];
 
 }
 
 #pragma mark - 添加一个子控制器
 - (void)addChildVc:(UIViewController *)childVc title:(NSString *)title imageName:(NSString *)imageName selectedImageName:(NSString *)seletedImageName {
-
     childVc.tabBarItem.title = title;
-    childVc.tabBarItem.image = [UIImage imageNamed:imageName];
+    childVc.tabBarItem.image = [UIColor clearColor].image;
     childVc.tabBarItem.selectedImage = [[UIImage imageNamed:seletedImageName] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    
-    //文字位置
-    [childVc.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -15)];
-    //图片位置
-    childVc.tabBarItem.imageInsets = UIEdgeInsetsMake(45, 2, 2, 2);
+    [childVc.tabBarItem setTitlePositionAdjustment:UIOffsetMake(0, -15)]; //文字位置
+    childVc.tabBarItem.imageInsets = UIEdgeInsetsMake(45, 2, 2, 2); //图片位置
 
     BaseNavigationViewController  *nc = [[BaseNavigationViewController alloc] initWithRootViewController:childVc];
     nc.title = title;
@@ -88,10 +76,11 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     NSLog(@"tabBarController.selectedIndex:%d",tabBarController.selectedIndex);
-    if ([LocalService isLogin]==NO) {
-        tabBarController.selectedIndex = 0;
-        NSURL *url = [NSURL URLWithString:@"Green://mine/login"];
-        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {}];
-    }
+//    if ([RouterManager isLogin]==NO && tabBarController.selectedIndex !=0) {
+//        tabBarController.selectedIndex = 0;
+//        NSURL *url = [NSURL URLWithString:@"Green://mine/login"];
+//        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:^(BOOL success) {}];
+//    }
 }
+
 @end

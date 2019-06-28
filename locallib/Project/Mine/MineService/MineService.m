@@ -13,8 +13,8 @@
 
 @implementation MineService
 
-+ (BOOL)openPath:(NSString *)path options:(NSDictionary<NSString *, id> *)options {
-    if ([path isEqualToString:@"login"]) {
++ (BOOL)openPath:(NSString *)path data:(NSDictionary<NSString *, id> *)data {
+    if ([path isEqualToString:@"/login"]) {
        return [self presentLoginVC];
     }
     return NO;
