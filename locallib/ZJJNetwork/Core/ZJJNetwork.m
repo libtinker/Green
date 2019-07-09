@@ -7,11 +7,15 @@
 //
 
 #import "ZJJNetwork.h"
+#import "AFHTTPCustomRequestSerializer.h"
 #import <AFNetworking/AFNetworking.h>
 #import "ZJJApiManager.h"
 #import "RouterManager.h"
 
 static AFHTTPSessionManager *shareManager = nil;
+
+NSTimeInterval const timeoutInterval = 60;
+
 
 @implementation ZJJNetwork
 
@@ -19,10 +23,11 @@ static AFHTTPSessionManager *shareManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shareManager = [AFHTTPSessionManager manager];
+//        AFHTTPCustomRequestSerializer* requestSerializer = [AFHTTPCustomRequestSerializer serializer];
         AFHTTPRequestSerializer* requestSerializer = [AFHTTPRequestSerializer serializer];
         requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
         AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
-        [requestSerializer setTimeoutInterval:10];
+        [requestSerializer setTimeoutInterval:timeoutInterval];
         [shareManager setResponseSerializer:responseSerializer];
         [shareManager setRequestSerializer:requestSerializer];
     });
@@ -74,6 +79,7 @@ static AFHTTPSessionManager *shareManager = nil;
 }
 
 + (void)download:(NSString *)URLString
+
         progress:(void (^)(NSProgress *downloadProgress))downloadProgressBlock
          success:(Success)success
          failure:(Failure)failure {
@@ -99,17 +105,17 @@ static AFHTTPSessionManager *shareManager = nil;
 }
 
 + (void)upload:(NSString *)URLString
-      fileURLs:(NSArray<NSURL *> *)fileURLs
+    parameters:(id)parameters
+     FileItems:(NSArray<FileItem *> *)FileItems
       progress:(void (^)(NSProgress *downloadProgress))uploadProgressBlock
        success:(Success)success
        failure:(Failure)failure {
     AFHTTPSessionManager *manager = [ZJJNetwork shareManager];
 
-    [manager POST:URLString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        for (int i = 0; i < fileURLs.count; i ++) {
-            NSURL *fileURL = fileURLs[i];
-            [formData appendPartWithFileURL:fileURL name:@"file" error:nil];
-        }
+    [manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        [FileItems enumerateObjectsUsingBlock:^(FileItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [formData appendPartWithFileData:obj.data name:obj.name fileName:obj.fileName mimeType:obj.mimeType];
+        }];
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         NSLog(@"%f",1.0*uploadProgress.completedUnitCount/uploadProgress.totalUnitCount);
         if (uploadProgressBlock) {
@@ -121,5 +127,9 @@ static AFHTTPSessionManager *shareManager = nil;
         failure(error,task);
     }];
 }
+
+@end
+
+@implementation FileItem
 
 @end

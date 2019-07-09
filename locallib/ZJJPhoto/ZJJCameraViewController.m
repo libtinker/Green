@@ -131,17 +131,12 @@
 }
 
 #pragma - 保存至相册
-- (void)saveImageToPhotoAlbum:(UIImage*)savedImage
-{
-
+- (void)saveImageToPhotoAlbum:(UIImage*)savedImage {
     UIImageWriteToSavedPhotosAlbum(savedImage, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
-
 }
 // 指定回调方法
 
-- (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
-
-{
+- (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo {
     NSString *msg = nil ;
     if(error != NULL){
         msg = @"保存图片失败" ;

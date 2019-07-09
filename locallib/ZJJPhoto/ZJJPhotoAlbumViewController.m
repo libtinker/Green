@@ -347,11 +347,14 @@ static NSString *ZJJPhotoCollectionViewCell = @"ZJJPhotoCollectionViewCell";
 }
 
 - (void)nextBtnClieked {
-//    _photoCollectionView.uploadArray;
-
-    NSURL *fileURL = [NSURL fileURLWithPath:@"/Users/tiankongxiyinwo/Desktop/Green/locallib/Project/Home/Resouce/video.bundle/music_cover@2x.png"];
-    NSArray *array = @[fileURL];
-    [ZJJNetwork upload:@"http://172.30.14.63:6061/upload" fileURLs:array progress:nil success:^(id  _Nullable responseObject) {
+    UIImage *image = _photoCollectionView.uploadArray[0];
+    FileItem *item = [[FileItem alloc] init];
+    item.name = @"file";
+    item.data = UIImagePNGRepresentation(image);
+    item.fileName = @"test.png";
+    item.mimeType = @".png";
+    NSArray *items = @[item];
+    [ZJJNetwork upload:@"http://172.30.14.63:6061/upload" parameters:nil FileItems:items progress:nil success:^(id  _Nullable responseObject) {
 
     } failure:^(NSError * _Nullable error, id  _Nullable responseObject) {
 

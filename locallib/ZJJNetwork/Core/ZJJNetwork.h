@@ -10,12 +10,12 @@
 
 
 NS_ASSUME_NONNULL_BEGIN
+@class FileItem;
 
 typedef void (^Success)(id _Nullable responseObject);
 typedef void (^Failure)(NSError * _Nullable error,id _Nullable responseObject);
 
 @interface ZJJNetwork : NSObject
-
 
 /**
  POST请求
@@ -47,16 +47,25 @@ typedef void (^Failure)(NSError * _Nullable error,id _Nullable responseObject);
  上传文件到服务器
 
  @param URLString 服务器网址
- @param fileURLs 本地文件路径url
+ @param parameters 参数
+ @param FileItems 文件模型
  @param uploadProgressBlock 上传进度
  @param success 成功回调
  @param failure 失败回调
  */
+
 + (void)upload:(NSString *)URLString
-      fileURLs:(NSArray<NSURL *> *)fileURLs
+    parameters:(id)parameters
+      FileItems:(NSArray<FileItem *> *)FileItems
       progress:(void (^)(NSProgress *downloadProgress))uploadProgressBlock
        success:(Success)success
        failure:(Failure)failure;
 @end
 
+@interface FileItem : NSObject
+@property (nonatomic,strong) NSData *data;
+@property (nonatomic,strong) NSString *name;
+@property (nonatomic,strong) NSString *fileName;
+@property (nonatomic,strong) NSString *mimeType;
+@end
 NS_ASSUME_NONNULL_END

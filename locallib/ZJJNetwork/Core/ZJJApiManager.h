@@ -17,6 +17,7 @@ typedef enum : NSUInteger {
 } EnvironmentType;
 
 @interface ZJJApiManager : NSObject
+
 + (instancetype)shareManager;
 
 @property(nonatomic, assign) EnvironmentType type;
