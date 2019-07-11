@@ -16,14 +16,13 @@ static AFHTTPSessionManager *shareManager = nil;
 
 NSTimeInterval const timeoutInterval = 60;
 
-
 @implementation ZJJNetwork
 
 + (AFHTTPSessionManager *)shareManager {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shareManager = [AFHTTPSessionManager manager];
-//        AFHTTPCustomRequestSerializer* requestSerializer = [AFHTTPCustomRequestSerializer serializer];
+        //        AFHTTPCustomRequestSerializer* requestSerializer = [AFHTTPCustomRequestSerializer serializer];
         AFHTTPRequestSerializer* requestSerializer = [AFHTTPRequestSerializer serializer];
         requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
         AFHTTPResponseSerializer *responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -35,7 +34,7 @@ NSTimeInterval const timeoutInterval = 60;
 }
 
 //设置Header
-+ (void)setHeader:(AFHTTPSessionManager *)manager {
+- (void)setHeader:(AFHTTPSessionManager *)manager {
     [manager.requestSerializer setValue:@"ios"forHTTPHeaderField:@"device"];
     [manager.requestSerializer setValue:[RouterManager getUserId] forHTTPHeaderField:@"user_id"];
     [manager.requestSerializer setValue:@"appName" forHTTPHeaderField:@"appName"];
@@ -45,26 +44,27 @@ NSTimeInterval const timeoutInterval = 60;
 }
 
 #pragma mark - post接口请求
-+ (void)POST:(NSString *)URLString
-        parameters:(id)parameters
-        success:(Success)success
-        failure:(Failure)failure {
+- (NSURLSessionDataTask *)POST:(NSString *)URLString
+                    parameters:(id)parameters
+                       success:(Success)success
+                       failure:(Failure)failure {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 
     AFHTTPSessionManager *manager = [ZJJNetwork shareManager];
-    [ZJJNetwork setHeader:manager];
+    [self setHeader:manager];
 
     NSString *baseUrl = [ZJJApiManager shareManager].baseUrl;
     NSMutableDictionary *param = [[NSMutableDictionary alloc] initWithDictionary:parameters];
     [param addEntriesFromDictionary:@{@"apiName":URLString}];
 
-    [manager POST:baseUrl parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    NSURLSessionDataTask *task = [manager POST:baseUrl parameters:param progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         [ZJJNetwork handleData:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         failure(error,nil);
     }];
+    return task;
 }
 
 + (void)handleData:(id  _Nullable)responseObject success:(Success)success failure:(Failure)failure{
@@ -78,19 +78,18 @@ NSTimeInterval const timeoutInterval = 60;
     }
 }
 
-+ (void)download:(NSString *)URLString
+- (NSURLSessionDownloadTask *)download:(NSString *)URLString
 
-        progress:(void (^)(NSProgress *downloadProgress))downloadProgressBlock
-         success:(Success)success
-         failure:(Failure)failure {
+                              progress:(void (^)(NSProgress *downloadProgress))downloadProgressBlock
+                               success:(Success)success
+                               failure:(Failure)failure {
     AFHTTPSessionManager *manager = [ZJJNetwork shareManager];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
 
     NSURLSessionDownloadTask *task = [manager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
-       if (downloadProgressBlock) {
-           downloadProgressBlock(downloadProgress);
-       }
-        //NSLog(@"%f",1.0*downloadProgress.completedUnitCount/downloadProgress.totalUnitCount);
+        if (downloadProgressBlock) {
+            downloadProgressBlock(downloadProgress);
+        }
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
         NSString *fullPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent:response.suggestedFilename];
         return [NSURL fileURLWithPath:fullPath];
@@ -102,30 +101,31 @@ NSTimeInterval const timeoutInterval = 60;
         }
     }];
     [task resume];
+    return task;
 }
 
-+ (void)upload:(NSString *)URLString
-    parameters:(id)parameters
-     FileItems:(NSArray<FileItem *> *)FileItems
-      progress:(void (^)(NSProgress *downloadProgress))uploadProgressBlock
-       success:(Success)success
-       failure:(Failure)failure {
+- (NSURLSessionDataTask *)upload:(NSString *)URLString
+                      parameters:(id)parameters
+                       FileItems:(NSArray<FileItem *> *)FileItems
+                        progress:(void (^)(NSProgress *downloadProgress))uploadProgressBlock
+                         success:(Success)success
+                         failure:(Failure)failure {
     AFHTTPSessionManager *manager = [ZJJNetwork shareManager];
 
-    [manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    NSURLSessionDataTask *task = [manager POST:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         [FileItems enumerateObjectsUsingBlock:^(FileItem * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             [formData appendPartWithFileData:obj.data name:obj.name fileName:obj.fileName mimeType:obj.mimeType];
         }];
     } progress:^(NSProgress * _Nonnull uploadProgress) {
-        NSLog(@"%f",1.0*uploadProgress.completedUnitCount/uploadProgress.totalUnitCount);
         if (uploadProgressBlock) {
             uploadProgressBlock(uploadProgress);
         }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        success(responseObject);
+        [ZJJNetwork handleData:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         failure(error,task);
     }];
+    return task;
 }
 
 @end

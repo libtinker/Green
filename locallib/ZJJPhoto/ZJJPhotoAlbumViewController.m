@@ -347,14 +347,23 @@ static NSString *ZJJPhotoCollectionViewCell = @"ZJJPhotoCollectionViewCell";
 }
 
 - (void)nextBtnClieked {
-    UIImage *image = _photoCollectionView.uploadArray[0];
-    FileItem *item = [[FileItem alloc] init];
-    item.name = @"file";
-    item.data = UIImagePNGRepresentation(image);
-    item.fileName = @"test.png";
-    item.mimeType = @".png";
-    NSArray *items = @[item];
-    [ZJJNetwork upload:@"http://172.30.14.63:6061/upload" parameters:nil FileItems:items progress:nil success:^(id  _Nullable responseObject) {
+
+
+
+    NSMutableArray *dataArray = [NSMutableArray array];
+    for (int i=0; i<_photoCollectionView.uploadArray.count; i++) {
+        UIImage *image = _photoCollectionView.uploadArray[i];
+        FileItem *item = [[FileItem alloc] init];
+        item.name = @"file";
+        item.data = UIImagePNGRepresentation(image);
+        item.fileName = [@"test" stringByAppendingFormat:@"%d.png",i];
+        item.mimeType = @"image/png";
+        [dataArray addObject:item];
+    }
+    ZJJNetwork *network = [[ZJJNetwork alloc] init];
+    [network upload:@"http://172.30.14.63:6061/upload" parameters:@{@"name":@"ceshi"} FileItems:dataArray progress:^(NSProgress * _Nonnull downloadProgress) {
+
+    } success:^(id  _Nullable responseObject) {
 
     } failure:^(NSError * _Nullable error, id  _Nullable responseObject) {
 

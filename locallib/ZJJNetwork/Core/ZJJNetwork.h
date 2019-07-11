@@ -24,11 +24,12 @@ typedef void (^Failure)(NSError * _Nullable error,id _Nullable responseObject);
  @param parameters 参数
  @param success 成功回调
  @param failure 失败回调
+ @return 任务对象
  */
-+ (void)POST:(NSString *)URLString
-  parameters:(id)parameters
-     success:(Success)success
-     failure:(Failure)failure;
+- (NSURLSessionDataTask *)POST:(NSString *)URLString
+                    parameters:(id)parameters
+                       success:(Success)success
+                       failure:(Failure)failure;
 
 /**
  下载文件
@@ -37,11 +38,13 @@ typedef void (^Failure)(NSError * _Nullable error,id _Nullable responseObject);
  @param downloadProgressBlock 进度条
  @param success 成功回调
  @param failure 失败回调
+ @return 任务对象
  */
-+ (void)download:(NSString *)URLString
-        progress:(void (^)(NSProgress *downloadProgress))downloadProgressBlock
-         success:(Success)success
-         failure:(Failure)failure;
+- (NSURLSessionDownloadTask *)download:(NSString *)URLString
+
+                              progress:(void (^)(NSProgress *downloadProgress))downloadProgressBlock
+                               success:(Success)success
+                               failure:(Failure)failure;
 
 /**
  上传文件到服务器
@@ -52,20 +55,37 @@ typedef void (^Failure)(NSError * _Nullable error,id _Nullable responseObject);
  @param uploadProgressBlock 上传进度
  @param success 成功回调
  @param failure 失败回调
+ @return 任务对象
  */
-
-+ (void)upload:(NSString *)URLString
-    parameters:(id)parameters
-      FileItems:(NSArray<FileItem *> *)FileItems
-      progress:(void (^)(NSProgress *downloadProgress))uploadProgressBlock
-       success:(Success)success
-       failure:(Failure)failure;
+- (NSURLSessionDataTask *)upload:(NSString *)URLString
+                      parameters:(id)parameters
+                       FileItems:(NSArray<FileItem *> *)FileItems
+                        progress:(void (^)(NSProgress *downloadProgress))uploadProgressBlock
+                         success:(Success)success
+                         failure:(Failure)failure;
 @end
 
 @interface FileItem : NSObject
+
+/**
+ 文件二进制数据
+ */
 @property (nonatomic,strong) NSData *data;
+
+/**
+ 名字（一般默认都写成file）
+ */
 @property (nonatomic,strong) NSString *name;
+
+/**
+ 文件名字
+ */
 @property (nonatomic,strong) NSString *fileName;
+
+/**
+ 文件的MIME类型(image/png,image/jpg等)
+ */
 @property (nonatomic,strong) NSString *mimeType;
+
 @end
 NS_ASSUME_NONNULL_END

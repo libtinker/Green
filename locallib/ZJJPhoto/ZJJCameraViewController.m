@@ -194,7 +194,8 @@
     }
 }
 - (void)closeBtnClicked {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    self.tabBarController.selectedIndex = 0;
+    self.tabBarController.tabBar.hidden = NO;
 }
 
 - (void)shootButtonClicked {
@@ -214,7 +215,7 @@
 #pragma mark - Getter
 - (UIButton *)closeBtn {
     if (!_closeBtn) {
-        _closeBtn = [UIButton buttonWithFrame:CGRectMake(0, STATUSBAR_HEIGHT, 60, 44) title:@"关闭" titleColor:UIColor.whiteColor font:[UIFont systemFontOfSize:14] target:self action:@selector(closeBtnClicked)];
+        _closeBtn = [UIButton buttonWithFrame:CGRectMake(0, STATUSBAR_HEIGHT+100, 80, 44) title:@"关闭" titleColor:UIColor.whiteColor font:[UIFont systemFontOfSize:14] target:self action:@selector(closeBtnClicked)];
     }
     return _closeBtn;
 }

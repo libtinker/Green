@@ -76,6 +76,11 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
     NSLog(@"tabBarController.selectedIndex:%d",tabBarController.selectedIndex);
+    if (tabBarController.selectedIndex == 2) {
+        tabBarController.tabBar.hidden = YES;
+    }else{
+        tabBarController.tabBar.hidden = NO;
+    }
 //    if ([RouterManager isLogin]==NO && tabBarController.selectedIndex !=0) {
 //        tabBarController.selectedIndex = 0;
 //        NSURL *url = [NSURL URLWithString:@"Green://mine/login"];

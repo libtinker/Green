@@ -37,7 +37,8 @@
                            @"username":userName,
                            @"password":password
                            };
-    [ZJJNetwork POST:@"login" parameters:parm success:^(id  _Nullable responseObject) {
+    ZJJNetwork *network = [[ZJJNetwork alloc] init];
+    [network POST:@"login" parameters:parm success:^(id  _Nullable responseObject) {
         NSDictionary *data = responseObject[@"data"];
         [LoginModel saveUserId:data[@"user_id"]];
         [LocalNotification postNotificationName:UserDidLoginNotification userInfo:nil];

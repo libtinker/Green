@@ -65,7 +65,8 @@
 #pragma mark - HTTP
 
 - (void)requestRecommend {
-    [ZJJNetwork POST:@"recommend" parameters:nil success:^(id  _Nullable responseObject) {
+    ZJJNetwork *network = [[ZJJNetwork alloc] init];
+    [network POST:@"recommend" parameters:nil success:^(id  _Nullable responseObject) {
         NSArray *dataArray = responseObject[@"data"];
         if (dataArray&&dataArray.count>0) {
             [_dataArray removeAllObjects];
@@ -117,7 +118,8 @@
 // 分享
 - (void)share:(NSString *)vedioPath {
     WS(weakSelf)
-    [ZJJNetwork download:vedioPath progress:^(NSProgress * _Nonnull downloadProgress) {
+    ZJJNetwork *network = [[ZJJNetwork alloc] init];
+    [network download:vedioPath progress:^(NSProgress * _Nonnull downloadProgress) {
 
     } success:^(id  _Nullable responseObject) {
         NSURL *url = responseObject;
