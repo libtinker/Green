@@ -347,9 +347,6 @@ static NSString *ZJJPhotoCollectionViewCell = @"ZJJPhotoCollectionViewCell";
 }
 
 - (void)nextBtnClieked {
-
-
-
     NSMutableArray *dataArray = [NSMutableArray array];
     for (int i=0; i<_photoCollectionView.uploadArray.count; i++) {
         UIImage *image = _photoCollectionView.uploadArray[i];
